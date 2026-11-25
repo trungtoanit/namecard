@@ -515,8 +515,9 @@ $('#aWeb').href='https://'+CONFIG.website;
 $('#year').textContent=new Date().getFullYear();
 
 function makeQR(el,text,size,dark='#111',light='#f6efe0',level='M'){ if(window.QRCode){ new QRCode(el,{text,width:size,height:size,colorDark:dark,colorLight:light,correctLevel:QRCode.CorrectLevel[level]}); } else { el.textContent='QR'; } }
-makeQR($('#cardQR'), pageUrl, 240, '#dcb76c', '#0e0e10', 'H');
-$('#cardUrl').textContent=pageUrl.replace(/^https?:\/\//,'').replace(/\/$/,'');
+// QR trên thẻ: mở Zalo của Chủ tịch
+makeQR($('#cardQR'), 'https://zalo.me/'+CONFIG.zalo, 240, '#dcb76c', '#0e0e10', 'H');
+$('#cardUrl').textContent='Zalo · '+CONFIG.phone;
 makeQR($('#wechatQR'), CONFIG.wechatId.startsWith('http')?CONFIG.wechatId:'weixin://contacts/profile/'+CONFIG.wechatId, 220);
 
 /* ---------- actions ---------- */
