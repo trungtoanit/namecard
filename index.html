@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CEO Digital Card 5.0 · Bao Bì Tuấn Tú</title>
+<title>Nguyễn Trung Toán · Bao Bì Tuấn Tú</title>
 <meta name="description" content="CEO Digital Card 5.0 – Bao Bì Tuấn Tú | Tuan Tu Packaging Executive Edition">
 <meta name="theme-color" content="#0b0b0d">
 <link rel="icon" href="assets/logo-gold.png" type="image/png">
 <meta property="og:image" content="assets/logo-gold.png">
-<meta property="og:title" content="CEO Digital Card 5.0 · Bao Bì Tuấn Tú">
+<meta property="og:title" content="Nguyễn Trung Toán · Bao Bì Tuấn Tú">
 <meta property="og:description" content="Tuan Tu Packaging – Executive Edition">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
@@ -187,7 +187,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
   <div class="shade"></div>
   <div class="hero-inner">
     <div class="eyebrow" data-i18n="heroEyebrow"></div>
-    <h1><span class="gold-text">CEO</span> Digital Card <span class="gold-text">5.0</span></h1>
+    <h1>Nguyễn <span class="gold-text">Trung Toán</span></h1>
     <p class="lead" data-i18n="heroLead"></p>
     <div class="vid-switch" id="vidSwitch"></div>
   </div>
@@ -298,7 +298,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
   <img src="assets/logo-gold.png" alt="" style="width:54px;margin-bottom:10px">
   <div class="f-brand gold-text" data-i18n="company"></div>
   <div data-i18n="address"></div>
-  <div style="margin-top:10px">© <span id="year"></span> Tuan Tu Packaging · CEO Digital Card 5.0</div>
+  <div style="margin-top:10px">© <span id="year"></span> Tuan Tu Packaging · Nguyễn Trung Toán</div>
 </footer>
 
 <div class="modal" id="wechatModal" role="dialog" aria-modal="true">
@@ -440,7 +440,7 @@ $('#aWechat').onclick=()=>$('#wechatModal').classList.add('open');
 $$('[data-close]').forEach(b=>b.onclick=()=>b.closest('.modal').classList.remove('open'));
 $('#wechatModal').onclick=e=>{if(e.target.id==='wechatModal')e.target.classList.remove('open')};
 $('#aShare').onclick=async()=>{
-  const data={title:'CEO Digital Card · '+I18N[lang].company,url:pageUrl};
+  const data={title:'Nguyễn Trung Toán · '+I18N[lang].company,url:pageUrl};
   if(navigator.share){try{await navigator.share(data)}catch(e){} }
   else{try{await navigator.clipboard.writeText(pageUrl);toast(I18N[lang].copied)}catch(e){prompt('URL',pageUrl)}}
 };
