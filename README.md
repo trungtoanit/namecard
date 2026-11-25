@@ -16,8 +16,8 @@ Sửa object `CONFIG` ở đầu thẻ `<script>` trong `index.html`, và nội 
 Đặt ảnh/video vào thư mục `assets/`.
 
 Thông tin còn thiếu:
-- [x] Logo chính thức (vẽ lại SVG từ ảnh – có file gốc thì thay `assets/logo.svg`)
-- [ ] Ảnh chân dung CEO
+- [x] Logo chính thức (file gốc, tông vàng đồng: `assets/logo-gold.png`)
+- [x] Ảnh chân dung CEO
 - [x] Họ tên và chức danh chính thức
 - [x] Số điện thoại (Zalo đang dùng chung số – cần xác nhận)
 - [ ] Mã QR / ID WeChat

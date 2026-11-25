@@ -6,8 +6,8 @@
 <title>CEO Digital Card 5.0 · Bao Bì Tuấn Tú</title>
 <meta name="description" content="CEO Digital Card 5.0 – Bao Bì Tuấn Tú | Tuan Tu Packaging Executive Edition">
 <meta name="theme-color" content="#0b0b0d">
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-<meta property="og:image" content="assets/logo.svg">
+<link rel="icon" href="assets/logo-gold.png" type="image/png">
+<meta property="og:image" content="assets/logo-gold.png">
 <meta property="og:title" content="CEO Digital Card 5.0 · Bao Bì Tuấn Tú">
 <meta property="og:description" content="Tuan Tu Packaging – Executive Edition">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,7 +95,7 @@ section{max-width:1100px;margin:0 auto;padding:80px 22px}
 
 /* ---------- Profile & actions ---------- */
 .profile{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin:46px auto 0;max-width:720px;backdrop-filter:blur(10px)}
-.avatar{width:96px;height:96px;border-radius:50%;padding:2px;background:conic-gradient(from 0deg,var(--gold3),var(--gold2),var(--gold3),var(--gold),var(--gold3));animation:spin 10s linear infinite}
+.avatar{width:120px;height:120px;border-radius:50%;padding:2px;background:conic-gradient(from 0deg,var(--gold3),var(--gold2),var(--gold3),var(--gold),var(--gold3));animation:spin 10s linear infinite}
 .avatar>div{width:100%;height:100%;border-radius:50%;background:#1a1a1f center/cover;display:grid;place-items:center;font-family:var(--serif);font-size:34px;color:var(--gold);animation:spin 10s linear infinite reverse}
 .profile h3{font-family:var(--serif);font-size:28px;font-weight:600;line-height:1.1}
 .profile .role{color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;margin-top:4px}
@@ -172,7 +172,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
 <body>
 
 <header class="topbar" id="topbar">
-  <div class="brand"><div class="logo"><img src="assets/logo.svg" alt="Tuấn Tú logo"></div><span class="name">TUẤN TÚ</span></div>
+  <div class="brand"><div class="logo"><img src="assets/logo-gold.png" alt="Tuấn Tú logo"></div><span class="name">TUẤN TÚ</span></div>
   <div class="langs" role="group" aria-label="Language">
     <button data-lang="vi" class="on">VI</button>
     <button data-lang="en">EN</button>
@@ -207,7 +207,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
         <div class="face front">
           <div class="glare"></div><div class="border"></div>
           <div class="f-top">
-            <div style="display:flex;align-items:center;gap:10px"><img src="assets/logo-gold.svg" alt="" style="width:clamp(28px,8vw,40px)"><div class="f-logo gold-text">TUẤN TÚ<small>PACKAGING</small></div></div>
+            <div style="display:flex;align-items:center;gap:10px"><img src="assets/logo-gold.png" alt="" style="width:clamp(28px,8vw,40px)"><div class="f-logo gold-text">TUẤN TÚ<small>PACKAGING</small></div></div>
             <svg class="nfc" viewBox="0 0 24 24" fill="none" stroke="#d6ba80" stroke-width="1.6" stroke-linecap="round"><path d="M6 8.5a5 5 0 0 1 0 7"/><path d="M9.5 6a9 9 0 0 1 0 12"/><path d="M13 3.5a13 13 0 0 1 0 17"/></svg>
           </div>
           <div class="chipgold"></div>
@@ -295,7 +295,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
 </section>
 
 <footer>
-  <img src="assets/logo.svg" alt="" style="width:54px;margin-bottom:10px">
+  <img src="assets/logo-gold.png" alt="" style="width:54px;margin-bottom:10px">
   <div class="f-brand gold-text" data-i18n="company"></div>
   <div data-i18n="address"></div>
   <div style="margin-top:10px">© <span id="year"></span> Tuan Tu Packaging · CEO Digital Card 5.0</div>
@@ -322,7 +322,7 @@ const CONFIG = {
   wechatId: "tuantu_packaging",        // WeChat ID (hoặc link QR WeChat)
   email: "info@tuantu.com.vn",         // Email doanh nghiệp
   website: "tuantu.com.vn",            // Tên miền chính thức
-  avatar: "",                          // Đường dẫn ảnh chân dung, ví dụ "assets/ceo.jpg"
+  avatar: "assets/ceo.jpg",            // Ảnh chân dung
   // Video nhà máy: thêm file vào thư mục assets/ rồi khai báo ở đây
   videos: [
     // { key:"line",  src:"assets/factory-line.mp4" },
@@ -424,7 +424,7 @@ $$('.langs button').forEach(b=>b.onclick=()=>applyLang(b.dataset.lang));
 /* ---------- bind config ---------- */
 $$('[data-bind]').forEach(e=>e.textContent=CONFIG[e.dataset.bind]);
 const av=$('#avatar');
-if(CONFIG.avatar){av.style.backgroundImage=`url(${CONFIG.avatar})`}else{av.innerHTML='<img src="assets/logo.svg" alt="" style="width:56%">'}
+if(CONFIG.avatar){av.style.backgroundImage=`url(${CONFIG.avatar})`}else{av.innerHTML='<img src="assets/logo-gold.png" alt="" style="width:56%">'}
 $('#aCall').href='tel:'+CONFIG.phone.replace(/\s/g,'');
 $('#aZalo').href='https://zalo.me/'+CONFIG.zalo;
 $('#aMail').href='mailto:'+CONFIG.email;
