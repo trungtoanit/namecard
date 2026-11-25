@@ -28,3 +28,8 @@ Thông tin còn thiếu:
 - [x] Số liệu năng lực
 - [ ] Danh mục sản phẩm, catalogue
 - [x] Tên miền chính thức
+
+## QR chia sẻ namecard
+- Ảnh in ấn: `assets/qr-namecard.png` (1000×1250)
+- Trang poster: https://trungtoanit.github.io/namecard/qr.html (thêm `?lang=en` hoặc `?lang=zh`)
+- Quét QR → https://trungtoanit.github.io/namecard/
