@@ -607,7 +607,7 @@ $('#wechatModal').onclick=e=>{if(e.target.id==='wechatModal')e.target.classList.
 $('#aShare').onclick=async()=>{
   const data={title:I18N[lang].name+' · '+I18N[lang].company,url:CONFIG.shareUrl};
   if(navigator.share){try{await navigator.share(data)}catch(e){} }
-  else{try{await navigator.clipboard.writeText(pageUrl);toast(I18N[lang].copied)}catch(e){prompt('URL',pageUrl)}}
+  else{copyText(CONFIG.shareUrl)}
 };
 function download(name,content,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 $('#saveContact').onclick=()=>{
@@ -834,7 +834,8 @@ async function renderShare(){
   const c=$('#shareQR');c.width=tmp.width;c.height=tmp.height;c.getContext('2d').drawImage(tmp,0,0);
 }
 $('#dlQR').onclick=()=>$('#shareQR').toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='QR-Namecard-NguyenTrungToan.png';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)},'image/png');
-$('#copyLink').onclick=async()=>{try{await navigator.clipboard.writeText(CONFIG.shareUrl);toast(I18N[lang].copied)}catch(e){prompt('URL',CONFIG.shareUrl)}};
+async function copyText(txt){try{await navigator.clipboard.writeText(txt)}catch(e){const ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(_){}ta.remove()}toast(I18N[lang].copied)}
+$('#copyLink').onclick=()=>copyText(CONFIG.shareUrl);
 
 /* ---------- virtual factory tour ---------- */
 let tour=null;
