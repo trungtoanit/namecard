@@ -149,6 +149,40 @@ section{max-width:1100px;margin:0 auto;padding:80px 22px}
 .prod>*:not(.art){position:relative;z-index:2}
 .prod h4{font-family:var(--serif);font-size:22px;font-weight:600}
 .prod p{font-size:13px;color:var(--muted)}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+.products{perspective:1200px}
+.prod{transform-style:preserve-3d;--mx:50%;--my:40%;transition:transform .25s ease,border-color .5s,box-shadow .5s}
+.prod:hover{transform:none;box-shadow:0 30px 60px -20px rgba(214,170,90,.35)}
+.prod .ring{position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;z-index:3;pointer-events:none;
+  background:conic-gradient(from var(--ang),transparent 0 62%,rgba(243,226,181,.0) 64%,#f3e2b5 76%,#d6ba80 82%,transparent 92%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ang 4.5s linear infinite}
+.prod:nth-child(2n) .ring{animation-duration:5.5s;animation-direction:reverse}
+@keyframes ang{to{--ang:360deg}}
+.prod .spot{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(243,214,150,.22),transparent 60%)}
+.prod:hover .spot{opacity:1}
+.prod .art{transform:translateZ(40px)}
+.prod .art>div{animation:floaty 4.5s ease-in-out infinite}
+.prod:nth-child(2) .art>div{animation-delay:-1.2s}.prod:nth-child(3) .art>div{animation-delay:-2.1s}.prod:nth-child(4) .art>div{animation-delay:-.6s}.prod:nth-child(5) .art>div{animation-delay:-3s}.prod:nth-child(6) .art>div{animation-delay:-1.8s}
+@keyframes floaty{0%,100%{transform:translateY(-14px)}50%{transform:translateY(-26px)}}
+.prod .art svg{width:120px;stroke-width:1.6;filter:drop-shadow(0 0 10px rgba(214,186,128,.35))}
+.prod .art svg *{stroke-dasharray:1;stroke-dashoffset:1}
+.prod.in .art svg *{animation:draw 2.4s cubic-bezier(.6,0,.2,1) forwards,glowP 3s 2.4s ease-in-out infinite}
+.prod.in .art svg *:nth-child(2){animation-delay:.35s,2.4s}.prod.in .art svg *:nth-child(3){animation-delay:.7s,2.4s}.prod.in .art svg *:nth-child(4){animation-delay:1s,2.4s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes glowP{0%,100%{stroke:#d6ba80}50%{stroke:#fff1c9}}
+.prod h4,.prod p{transform:translateZ(30px)}
+.prod.in h4{animation:rise .9s .5s both}.prod.in p{animation:rise .9s .7s both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+.prod .tag{position:absolute;top:16px;right:16px;z-index:2;font-size:10px;letter-spacing:.2em;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.cap{position:relative;overflow:hidden;transition:transform .3s,border-color .3s}
+.cap:hover{transform:translateY(-3px);border-color:var(--gold)}
+.cap::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(243,226,181,.14),transparent);transform:skewX(-20deg);animation:sweep 5s ease-in-out infinite}
+.cap:nth-child(2)::after{animation-delay:.8s}.cap:nth-child(3)::after{animation-delay:1.6s}.cap:nth-child(4)::after{animation-delay:2.4s}
+.cap i{position:relative}
+.cap i::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid var(--gold);animation:ripple 2.6s ease-out infinite}
+@keyframes ripple{from{transform:scale(1);opacity:.8}to{transform:scale(1.9);opacity:0}}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
+@media (max-width:760px){.products{grid-template-columns:1fr 1fr}.prod{min-height:220px;padding:14px}.prod h4{font-size:18px}.prod p{font-size:12px}.prod .art svg{width:90px}}
 .capab{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
 .cap{display:flex;gap:14px;padding:18px;border-radius:16px;border:1px solid var(--line);background:var(--panel)}
 .cap i{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--gold3);display:grid;place-items:center;font-style:normal;color:var(--gold);font-family:var(--serif)}
@@ -183,7 +217,6 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
 @media (max-width:760px){
   section{padding:64px 18px}
   .stats{grid-template-columns:repeat(2,1fr)}
-  .products{grid-template-columns:1fr}
   .capab{grid-template-columns:1fr}
   .form{grid-template-columns:1fr;padding:20px}
   .profile{grid-template-columns:1fr;text-align:center;justify-items:center}
@@ -322,27 +355,6 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
   <div class="capab" id="capab"></div>
 </section>
 
-<!-- BÁO GIÁ -->
-<section id="quote">
-  <div class="sec-head reveal">
-    <div class="eyebrow" data-i18n="quoteEyebrow"></div>
-    <h2 data-i18n="quoteTitle"></h2>
-    <div class="divider"></div>
-  </div>
-  <form class="form reveal" id="quoteForm">
-    <label><span data-i18n="fName"></span><input name="name" required></label>
-    <label><span data-i18n="fCompany"></span><input name="company"></label>
-    <label><span data-i18n="fPhone"></span><input name="phone" type="tel" required></label>
-    <label><span data-i18n="fEmail"></span><input name="email" type="email"></label>
-    <label><span data-i18n="fProduct"></span><select name="product" id="fProduct"></select></label>
-    <label><span data-i18n="fQty"></span><input name="qty" inputmode="numeric" placeholder="10,000"></label>
-    <label class="full"><span data-i18n="fNote"></span><textarea name="note"></textarea></label>
-    <div class="form-actions">
-      <button class="btn-primary" type="submit" data-i18n="send"></button>
-      <button class="btn-ghost" type="button" id="exportDraft" data-i18n="export"></button>
-    </div>
-  </form>
-</section>
 
 <footer>
   <img src="assets/logo-gold.png" alt="" style="width:54px;margin-bottom:10px">
@@ -360,6 +372,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
   </div>
 </div>
 <div class="toast" id="toast"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
 
 <script>
 /* =========================================================
@@ -394,7 +407,7 @@ const I18N = {
     aboutEyebrow:"Hồ sơ năng lực", aboutTitle:"Năng lực sản xuất",
     stats:["Năm kinh nghiệm","Khách hàng doanh nghiệp","Dây chuyền hiện đại","Sản phẩm / tháng"],
     showroomTitle:"Sản phẩm tiêu biểu",
-    products:[["Thùng carton","Carton 3–5–7 lớp, in flexo sắc nét"],["Hộp giấy cao cấp","Hộp cứng, ép kim, dập nổi, UV định hình"],["Túi giấy & tem nhãn","Túi kraft, túi thời trang, tem nhãn sản phẩm"]],
+    products:[["Thùng carton","Carton 3–5–7 lớp, in flexo sắc nét"],["Hộp offset","In offset 4–6 màu, cán màng, bế định hình"],["Hộp quà cao cấp","Hộp cứng, ép kim, dập nổi, UV định hình"],["Túi giấy","Túi kraft, túi thời trang, quai dây sang trọng"],["Tem nhãn","Decal, tem bảo hành, tem chống giả"],["Mã vạch","Tem mã vạch, QR, in dữ liệu biến đổi"]],
     caps:[["Thiết kế miễn phí","Đội ngũ thiết kế mẫu theo yêu cầu thương hiệu"],["Kiểm soát chất lượng","Quy trình QC từng công đoạn trước khi xuất xưởng"],["Giao hàng đúng hẹn","Hệ thống kho và vận chuyển chủ động"],["Đa thị trường","Phục vụ khách hàng Việt Nam, quốc tế và Trung Quốc"]],
     quoteEyebrow:"Yêu cầu báo giá", quoteTitle:"Nhận báo giá trong 24 giờ",
     fName:"Họ tên *", fCompany:"Công ty", fPhone:"Số điện thoại *", fEmail:"Email", fProduct:"Loại sản phẩm", fQty:"Số lượng", fNote:"Quy cách / ghi chú",
@@ -416,7 +429,7 @@ const I18N = {
     aboutEyebrow:"Company profile", aboutTitle:"Manufacturing Capability",
     stats:["Years of experience","Business clients","Modern lines","Products / month"],
     showroomTitle:"Featured Products",
-    products:[["Carton boxes","3–5–7 ply corrugated, sharp flexo printing"],["Premium rigid boxes","Hot foil, embossing, spot UV finishing"],["Paper bags & labels","Kraft bags, retail bags, product labels"]],
+    products:[["Carton boxes","3–5–7 ply corrugated, sharp flexo printing"],["Offset printed boxes","4–6 colour offset, lamination, die-cutting"],["Premium gift boxes","Rigid boxes, hot foil, embossing, spot UV"],["Paper bags","Kraft & retail bags with premium handles"],["Labels & stickers","Decals, warranty and anti-counterfeit labels"],["Barcode labels","Barcode, QR and variable data printing"]],
     caps:[["Free design","In-house team designs to your brand"],["Quality control","QC at every stage before delivery"],["On-time delivery","Own warehouse and logistics"],["Global markets","Serving Vietnam, international and China"]],
     quoteEyebrow:"Request a quote", quoteTitle:"Get a quote within 24 hours",
     fName:"Full name *", fCompany:"Company", fPhone:"Phone *", fEmail:"Email", fProduct:"Product type", fQty:"Quantity", fNote:"Specs / notes",
@@ -438,7 +451,7 @@ const I18N = {
     aboutEyebrow:"企业简介", aboutTitle:"生产能力",
     stats:["年经验","企业客户","现代化生产线","月产量"],
     showroomTitle:"精选产品",
-    products:[["瓦楞纸箱","3–5–7层瓦楞纸板，柔印清晰"],["高档礼盒","烫金、压纹、局部UV工艺"],["纸袋与标签","牛皮纸袋、购物袋、产品标签"]],
+    products:[["瓦楞纸箱","3–5–7层瓦楞纸板，柔印清晰"],["胶印彩盒","4–6色胶印、覆膜、模切成型"],["高档礼盒","精装硬盒、烫金、压纹、局部UV"],["纸袋","牛皮纸袋、购物袋、精美提绳"],["标签贴纸","不干胶、保修标签、防伪标签"],["条码标签","条形码、二维码、可变数据印刷"]],
     caps:[["免费设计","专业团队按品牌需求设计"],["质量控制","每道工序严格品检"],["准时交货","自有仓储与物流"],["多元市场","服务越南、国际及中国客户"]],
     quoteEyebrow:"询价", quoteTitle:"24小时内获取报价",
     fName:"姓名 *", fCompany:"公司", fPhone:"电话 *", fEmail:"邮箱", fProduct:"产品类型", fQty:"数量", fNote:"规格 / 备注",
@@ -450,14 +463,17 @@ const I18N = {
 
 const STATS = [[8,"+"],[50,"+"],[6,""],[5,"M+"]];
 const ICONS = [
-  '<svg viewBox="0 0 100 100"><path d="M20 38 50 24l30 14v34L50 86 20 72z"/><path d="M20 38l30 14 30-14M50 52v34"/><path d="M35 31l30 14"/></svg>',
-  '<svg viewBox="0 0 100 100"><rect x="22" y="40" width="56" height="40" rx="2"/><path d="M18 30h64v10H18zM50 30v50"/><path d="M50 30c-8-14-22-10-16-2 3 3 16 2 16 2zM50 30c8-14 22-10 16-2-3 3-16 2-16 2z"/></svg>',
-  '<svg viewBox="0 0 100 100"><path d="M26 34h48l-4 52H30z"/><path d="M38 40V28a12 12 0 0 1 24 0v12"/><path d="M40 60h20M40 68h14"/></svg>',
+  '<svg viewBox="0 0 100 100"><path pathLength="1" d="M20 38 50 24l30 14v34L50 86 20 72z"/><path pathLength="1" d="M20 38l30 14 30-14M50 52v34"/><path pathLength="1" d="M35 31l30 14"/></svg>',
+  '<svg viewBox="0 0 100 100"><path pathLength="1" d="M22 36 50 25 78 36 50 47Z"/><path pathLength="1" d="M22 36v36l28 13V47M78 36v36L50 85"/><path pathLength="1" d="M28 52l16 7M28 60l16 7M56 58l16-7"/><circle pathLength="1" cx="64" cy="68" r="5"/></svg>',
+  '<svg viewBox="0 0 100 100"><rect pathLength="1" x="22" y="42" width="56" height="40" rx="2"/><path pathLength="1" d="M18 32h64v10H18zM50 32v50"/><path pathLength="1" d="M50 32c-8-14-22-10-16-2 3 3 16 2 16 2zM50 32c8-14 22-10 16-2-3 3-16 2-16 2z"/></svg>',
+  '<svg viewBox="0 0 100 100"><path pathLength="1" d="M26 36h48l-4 50H30z"/><path pathLength="1" d="M38 42V30a12 12 0 0 1 24 0v12"/><path pathLength="1" d="M40 62h20M43 70h14"/></svg>',
+  '<svg viewBox="0 0 100 100"><circle pathLength="1" cx="40" cy="56" r="24"/><circle pathLength="1" cx="40" cy="56" r="9"/><path pathLength="1" d="M40 80h46"/><path pathLength="1" d="M50 74h10v6H50zM66 74h10v6H66z"/></svg>',
+  '<svg viewBox="0 0 100 100"><rect pathLength="1" x="16" y="28" width="68" height="44" rx="4"/><path pathLength="1" d="M25 36v24M29 36v24M35 36v24M38 36v24M44 36v24M49 36v24M52 36v24M58 36v24M63 36v24M66 36v24M72 36v24M75 36v24"/><path pathLength="1" d="M25 66h50"/><path pathLength="1" d="M10 50h80"/></svg>',
 ];
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const store = { get(k){try{return localStorage.getItem(k)}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,v)}catch(e){}} };
-const pageUrl = location.href.split('#')[0];
+const pageUrl = location.origin + location.pathname;
 const ses = { get(k){try{return sessionStorage.getItem(k)}catch(e){return null}}, set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}} };
 function detectLang(){
   const q=new URLSearchParams(location.search).get('lang'); if(I18N[q]) return q;
@@ -480,9 +496,9 @@ function applyLang(l){
   $$('[data-i18n-html]').forEach(e=>e.innerHTML=d[e.dataset.i18nHtml]);
   $$('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
   $('#stats').innerHTML = STATS.map((s,i)=>`<div class="stat reveal in"><b class="gold-text" data-count="${s[0]}" data-suf="${s[1]}">${s[0]}${s[1]}</b><span>${d.stats[i]}</span></div>`).join('');
-  $('#products').innerHTML = d.products.map((p,i)=>`<div class="prod reveal in"><div class="art">${ICONS[i]}</div><h4>${p[0]}</h4><p>${p[1]}</p></div>`).join('');
-  $('#capab').innerHTML = d.caps.map((c,i)=>`<div class="cap reveal in"><i>${['I','II','III','IV'][i]}</i><div><b>${c[0]}</b><span>${c[1]}</span></div></div>`).join('');
-  $('#fProduct').innerHTML = d.products.map(p=>`<option>${p[0]}</option>`).join('') + `<option>${l==='vi'?'Khác':l==='en'?'Other':'其他'}</option>`;
+  $('#products').innerHTML = d.products.map((p,i)=>`<div class="prod reveal" style="transition-delay:${(i%3)*.12}s"><span class="ring"></span><span class="spot"></span><span class="tag">0${i+1}</span><div class="art"><div>${ICONS[i]}</div></div><h4>${p[0]}</h4><p>${p[1]}</p></div>`).join('');
+  $('#capab').innerHTML = d.caps.map((c,i)=>`<div class="cap reveal" style="transition-delay:${i*.1}s"><i>${['I','II','III','IV'][i]}</i><div><b>${c[0]}</b><span>${c[1]}</span></div></div>`).join('');
+  if(typeof wireShowroom==='function')wireShowroom();
   buildVideoSwitch();
   if(typeof showSlogan==='function')showSlogan();
 }
@@ -517,15 +533,6 @@ $('#saveContact').onclick=()=>{
   const v=['BEGIN:VCARD','VERSION:3.0',`FN:${CONFIG.name}`,`ORG:Bao Bì Tuấn Tú`,`TITLE:Chairman of the Board`,`TEL;TYPE=CELL:${CONFIG.phone}`,`EMAIL:${CONFIG.email}`,`URL:https://${CONFIG.website}`,`ADR;TYPE=WORK:;;48/13 Khu Phố Bình Phước B, An Phú;Thuận An;Bình Dương;;Việt Nam`,`NOTE:Digital card ${pageUrl}`,'END:VCARD'].join('\r\n');
   download('TuanTu-CEO.vcf',v,'text/vcard');toast(I18N[lang].saved);
 };
-
-/* ---------- quote form ---------- */
-function formText(){
-  const f=Object.fromEntries(new FormData($('#quoteForm'))), d=I18N[lang];
-  return [`${d.quoteEyebrow} – ${d.company}`,`${d.fName.replace(' *','')}: ${f.name}`,`${d.fCompany}: ${f.company}`,`${d.fPhone.replace(' *','')}: ${f.phone}`,`${d.fEmail}: ${f.email}`,`${d.fProduct}: ${f.product}`,`${d.fQty}: ${f.qty}`,`${d.fNote}: ${f.note}`,`— ${new Date().toLocaleString()}`].join('\n');
-}
-function valid(){const f=$('#quoteForm');if(!f.name.value.trim()||!f.phone.value.trim()){toast(I18N[lang].needInfo);return false}return true}
-$('#quoteForm').onsubmit=e=>{e.preventDefault();if(!valid())return;location.href=`mailto:${CONFIG.email}?subject=${encodeURIComponent(I18N[lang].quoteEyebrow)}&body=${encodeURIComponent(formText())}`};
-$('#exportDraft').onclick=()=>{if(!valid())return;download('bao-gia-nhap.txt',formText(),'text/plain;charset=utf-8');toast(I18N[lang].exported)};
 
 /* ---------- 3D card: flip + tilt + glare ---------- */
 const card=$('#card3d');
@@ -683,6 +690,51 @@ addEventListener('scroll',()=>$('#topbar').classList.toggle('solid',scrollY>60),
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');
   e.target.querySelectorAll?.('[data-count]').forEach(countUp);io.unobserve(e.target)}),{threshold:.15});
 function countUp(el){const end=+el.dataset.count,suf=el.dataset.suf,t0=performance.now();(function step(n){const p=Math.min(1,(n-t0)/1600),v=Math.round(end*(1-Math.pow(1-p,3)));el.textContent=v+suf;if(p<1)requestAnimationFrame(step)})(t0)}
+
+/* ---------- FX: gold particle bursts ---------- */
+const fx=$('#fx'),fctx=fx.getContext('2d'),parts=[],rings=[];let fxOn=false;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function fxSize(){const d=Math.min(devicePixelRatio||1,2);fx.width=innerWidth*d;fx.height=innerHeight*d;fctx.setTransform(d,0,0,d,0,0)}
+addEventListener('resize',fxSize);fxSize();
+const GOLDS=['#fff3cf','#f3e2b5','#e8c47a','#d6ba80','#b8893f','#ffd98a'];
+function burst(x,y,n=70,power=1){
+  if(reduce)return;
+  for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,sp=(2+Math.random()*7)*power;
+    parts.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2.5*power,life:1,decay:.008+Math.random()*.014,s:1+Math.random()*3,c:GOLDS[i%GOLDS.length],star:Math.random()<.35,rot:Math.random()*6})}
+  rings.push({x,y,r:6,life:1,power});
+  if(!fxOn){fxOn=true;requestAnimationFrame(fxLoop)}
+}
+function burstEl(el,n,power){const r=el.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,n,power)}
+function drawStar(x,y,s,rot){fctx.save();fctx.translate(x,y);fctx.rotate(rot);fctx.beginPath();for(let i=0;i<4;i++){fctx.lineTo(0,-s*2.4);fctx.lineTo(s*.5,-s*.5);fctx.rotate(Math.PI/2)}fctx.fill();fctx.restore()}
+function fxLoop(){
+  fctx.clearRect(0,0,innerWidth,innerHeight);fctx.globalCompositeOperation='lighter';
+  for(let i=rings.length-1;i>=0;i--){const g=rings[i];g.r+=7*g.power;g.life-=.035;if(g.life<=0){rings.splice(i,1);continue}
+    fctx.strokeStyle=`rgba(255,220,150,${g.life*.7})`;fctx.lineWidth=2.5*g.life;fctx.beginPath();fctx.arc(g.x,g.y,g.r,0,7);fctx.stroke()}
+  for(let i=parts.length-1;i>=0;i--){const p=parts[i];p.vx*=.975;p.vy=p.vy*.975+.12;p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;p.rot+=.1;
+    if(p.life<=0){parts.splice(i,1);continue}
+    fctx.globalAlpha=p.life;fctx.fillStyle=p.c;fctx.shadowColor=p.c;fctx.shadowBlur=12;
+    if(p.star)drawStar(p.x,p.y,p.s,p.rot);else{fctx.beginPath();fctx.arc(p.x,p.y,p.s,0,7);fctx.fill()}}
+  fctx.globalAlpha=1;fctx.shadowBlur=0;fctx.globalCompositeOperation='source-over';
+  if(parts.length||rings.length)requestAnimationFrame(fxLoop);else{fxOn=false;fctx.clearRect(0,0,innerWidth,innerHeight)}
+}
+const burstIO=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;burstIO.unobserve(el);
+  setTimeout(()=>burstEl(el,el.classList.contains('prod')?55:25,el.classList.contains('prod')?1:.6),(+el.dataset.i||0)*160+300)}),{threshold:.5});
+function wireShowroom(){
+  $$('.prod,.cap').forEach((el,i)=>{
+    el.dataset.i=i%6; io.observe(el); burstIO.observe(el);
+    if(document.documentElement.dataset.revealed)el.classList.add('in');
+    el.addEventListener('click',e=>burst(e.clientX,e.clientY,90,1.3));
+    if(!el.classList.contains('prod'))return;
+    let last=0;
+    el.addEventListener('pointerenter',e=>{const now=Date.now();if(now-last>900){last=now;burst(e.clientX,e.clientY,22,.6)}});
+    el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
+      el.style.setProperty('--mx',px*100+'%');el.style.setProperty('--my',py*100+'%');
+      el.style.transform=`rotateX(${(.5-py)*14}deg) rotateY(${(px-.5)*16}deg) translateZ(10px)`});
+    el.addEventListener('pointerleave',()=>{el.style.transform=''});
+  });
+}
+// card flip & stats also celebrate
+$('#card3d').addEventListener('click',()=>setTimeout(()=>burstEl($('#card3d'),80,1.2),350));
 
 let si=0, sTimer;
 function showSlogan(){

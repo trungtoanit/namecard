@@ -9,7 +9,8 @@ Website danh thiếp điện tử (namecard) cho CEO Bao Bì Tuấn Tú.
 - Thẻ NFC kim loại 3D: chạm để lật 180°, nghiêng theo chuột/cảm biến điện thoại, ánh kim
 - 3 ngôn ngữ: Tiếng Việt · English · 中文
 - Nút Gọi, Zalo, WeChat (QR), Email, Website, Chia sẻ, Lưu danh bạ (vCard)
-- Hồ sơ năng lực, Digital Showroom, form yêu cầu báo giá (gửi email / xuất bản nháp)
+- Hồ sơ năng lực, Digital Showroom 6 sản phẩm với hiệu ứng vẽ nét, viền vàng chạy, pháo hoa hạt vàng
+- Slogan 3 ngôn ngữ xoay vòng, tự nhận diện ngôn ngữ trình duyệt (ép ngôn ngữ bằng ?lang=vi|en|zh)
 
 ## Cập nhật dữ liệu thật
 Sửa object `CONFIG` ở đầu thẻ `<script>` trong `index.html`, và nội dung `I18N` cho từng ngôn ngữ.
