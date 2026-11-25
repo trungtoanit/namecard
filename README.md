@@ -16,13 +16,14 @@ Sửa object `CONFIG` ở đầu thẻ `<script>` trong `index.html`, và nội 
 Đặt ảnh/video vào thư mục `assets/`.
 
 Thông tin còn thiếu:
-- [ ] Logo chính thức
+- [x] Logo chính thức (vẽ lại SVG từ ảnh – có file gốc thì thay `assets/logo.svg`)
 - [ ] Ảnh chân dung CEO
-- [ ] Họ tên và chức danh chính thức
-- [ ] Số điện thoại và Zalo
+- [x] Họ tên và chức danh chính thức
+- [x] Số điện thoại (Zalo đang dùng chung số – cần xác nhận)
 - [ ] Mã QR / ID WeChat
-- [ ] Email doanh nghiệp
-- [ ] Địa chỉ nhà máy
+- [x] Email doanh nghiệp
+- [x] Địa chỉ nhà máy
 - [ ] Hình ảnh và video nhà máy
-- [ ] Số liệu năng lực, danh mục sản phẩm, catalogue
-- [ ] Tên miền chính thức
+- [x] Số liệu năng lực
+- [ ] Danh mục sản phẩm, catalogue
+- [x] Tên miền chính thức
