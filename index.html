@@ -6,6 +6,8 @@
 <title>CEO Digital Card 5.0 · Bao Bì Tuấn Tú</title>
 <meta name="description" content="CEO Digital Card 5.0 – Bao Bì Tuấn Tú | Tuan Tu Packaging Executive Edition">
 <meta name="theme-color" content="#0b0b0d">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<meta property="og:image" content="assets/logo.svg">
 <meta property="og:title" content="CEO Digital Card 5.0 · Bao Bì Tuấn Tú">
 <meta property="og:description" content="Tuan Tu Packaging – Executive Edition">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +31,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .topbar{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;padding-top:max(14px,env(safe-area-inset-top));background:linear-gradient(to bottom,rgba(11,11,13,.85),transparent);transition:background .4s}
 .topbar.solid{background:rgba(11,11,13,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:18px;letter-spacing:.08em}
-.logo{width:34px;height:34px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;font-family:var(--serif);font-weight:700;color:var(--gold);font-size:15px;position:relative}
+.logo{width:38px;height:38px;display:grid;place-items:center;position:relative}
+.logo img{width:30px;height:30px}
 .logo::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid transparent;border-top-color:var(--gold2);animation:spin 4s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .langs{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:rgba(0,0,0,.35)}
@@ -169,7 +172,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
 <body>
 
 <header class="topbar" id="topbar">
-  <div class="brand"><div class="logo">TT</div><span class="name">TUẤN TÚ</span></div>
+  <div class="brand"><div class="logo"><img src="assets/logo.svg" alt="Tuấn Tú logo"></div><span class="name">TUẤN TÚ</span></div>
   <div class="langs" role="group" aria-label="Language">
     <button data-lang="vi" class="on">VI</button>
     <button data-lang="en">EN</button>
@@ -204,7 +207,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
         <div class="face front">
           <div class="glare"></div><div class="border"></div>
           <div class="f-top">
-            <div class="f-logo gold-text">TUẤN TÚ<small>PACKAGING</small></div>
+            <div style="display:flex;align-items:center;gap:10px"><img src="assets/logo-gold.svg" alt="" style="width:clamp(28px,8vw,40px)"><div class="f-logo gold-text">TUẤN TÚ<small>PACKAGING</small></div></div>
             <svg class="nfc" viewBox="0 0 24 24" fill="none" stroke="#d6ba80" stroke-width="1.6" stroke-linecap="round"><path d="M6 8.5a5 5 0 0 1 0 7"/><path d="M9.5 6a9 9 0 0 1 0 12"/><path d="M13 3.5a13 13 0 0 1 0 17"/></svg>
           </div>
           <div class="chipgold"></div>
@@ -292,6 +295,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
 </section>
 
 <footer>
+  <img src="assets/logo.svg" alt="" style="width:54px;margin-bottom:10px">
   <div class="f-brand gold-text" data-i18n="company"></div>
   <div data-i18n="address"></div>
   <div style="margin-top:10px">© <span id="year"></span> Tuan Tu Packaging · CEO Digital Card 5.0</div>
@@ -388,7 +392,7 @@ const I18N = {
   },
 };
 
-const STATS = [[15,"+"],[500,"+"],[8,""],[2,"M+"]];
+const STATS = [[8,"+"],[50,"+"],[6,""],[5,"M+"]];
 const ICONS = [
   '<svg viewBox="0 0 100 100"><path d="M20 38 50 24l30 14v34L50 86 20 72z"/><path d="M20 38l30 14 30-14M50 52v34"/><path d="M35 31l30 14"/></svg>',
   '<svg viewBox="0 0 100 100"><rect x="22" y="40" width="56" height="40" rx="2"/><path d="M18 30h64v10H18zM50 30v50"/><path d="M50 30c-8-14-22-10-16-2 3 3 16 2 16 2zM50 30c8-14 22-10 16-2-3 3-16 2-16 2z"/></svg>',
@@ -420,7 +424,7 @@ $$('.langs button').forEach(b=>b.onclick=()=>applyLang(b.dataset.lang));
 /* ---------- bind config ---------- */
 $$('[data-bind]').forEach(e=>e.textContent=CONFIG[e.dataset.bind]);
 const av=$('#avatar');
-if(CONFIG.avatar){av.style.backgroundImage=`url(${CONFIG.avatar})`}else{av.textContent=CONFIG.name.split(' ').slice(-1)[0][0]}
+if(CONFIG.avatar){av.style.backgroundImage=`url(${CONFIG.avatar})`}else{av.innerHTML='<img src="assets/logo.svg" alt="" style="width:56%">'}
 $('#aCall').href='tel:'+CONFIG.phone.replace(/\s/g,'');
 $('#aZalo').href='https://zalo.me/'+CONFIG.zalo;
 $('#aMail').href='mailto:'+CONFIG.email;
