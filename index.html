@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="assets/qr-art.js"></script>
 <style>
 :root{
   --bg:#0b0b0d; --bg2:#141418; --panel:rgba(22,22,27,.72); --line:rgba(214,186,128,.22);
@@ -24,7 +25,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit;color:inherit}
-.gold-text{background:linear-gradient(100deg,var(--gold3),var(--gold2) 40%,var(--gold) 60%,var(--gold3));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+.gold-text{background:linear-gradient(100deg,var(--gold3),var(--gold2) 40%,var(--gold) 60%,var(--gold3));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
 @keyframes shine{to{background-position:-200% center}}
 
 /* ---------- Top bar ---------- */
@@ -127,9 +128,9 @@ section{max-width:1100px;margin:0 auto;padding:80px 22px}
 .act{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 8px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(160deg,#1b1b20,#111114);cursor:pointer;font-size:12.5px;letter-spacing:.04em;transition:transform .3s,border-color .3s}
 .act:hover{transform:translateY(-3px);border-color:var(--gold)}
 .act svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.5}
-.act::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(243,226,181,.18),transparent);transform:skewX(-20deg);animation:sweep 4.5s ease-in-out infinite}
+.act::after{content:"";position:absolute;top:0;left:0;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(243,226,181,.18),transparent);transform:translateX(-200%) skewX(-20deg);will-change:transform;animation:sweep 4.5s ease-in-out infinite}
 .act:nth-child(2)::after{animation-delay:.5s}.act:nth-child(3)::after{animation-delay:1s}.act:nth-child(4)::after{animation-delay:1.5s}.act:nth-child(5)::after{animation-delay:2s}.act:nth-child(6)::after{animation-delay:2.5s}
-@keyframes sweep{0%,60%{left:-120%}100%{left:160%}}
+@keyframes sweep{0%,60%{transform:translateX(-200%) skewX(-20deg)}100%{transform:translateX(320%) skewX(-20deg)}}
 .btn-primary{display:block;max-width:720px;margin:14px auto 0;text-align:center;padding:16px;border-radius:14px;border:0;width:100%;cursor:pointer;background:linear-gradient(120deg,var(--gold3),var(--gold2) 50%,var(--gold3));background-size:200% auto;color:#1a1408;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:13px;animation:shine 5s linear infinite}
 
 /* ---------- Stats ---------- */
@@ -155,7 +156,8 @@ section{max-width:1100px;margin:0 auto;padding:80px 22px}
 .prod:hover{transform:none;box-shadow:0 30px 60px -20px rgba(214,170,90,.35)}
 .prod .ring{position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;z-index:3;pointer-events:none;
   background:conic-gradient(from var(--ang),transparent 0 62%,rgba(243,226,181,.0) 64%,#f3e2b5 76%,#d6ba80 82%,transparent 92%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ang 4.5s linear infinite}
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ang 4.5s linear infinite;animation-play-state:paused}
+.prod:hover .ring{animation-play-state:running}
 .prod:nth-child(2n) .ring{animation-duration:5.5s;animation-direction:reverse}
 @keyframes ang{to{--ang:360deg}}
 .prod .spot{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(243,214,150,.22),transparent 60%)}
@@ -164,11 +166,11 @@ section{max-width:1100px;margin:0 auto;padding:80px 22px}
 .prod .art>div{animation:floaty 4.5s ease-in-out infinite}
 .prod:nth-child(2) .art>div{animation-delay:-1.2s}.prod:nth-child(3) .art>div{animation-delay:-2.1s}.prod:nth-child(4) .art>div{animation-delay:-.6s}.prod:nth-child(5) .art>div{animation-delay:-3s}.prod:nth-child(6) .art>div{animation-delay:-1.8s}
 @keyframes floaty{0%,100%{transform:translateY(-14px)}50%{transform:translateY(-26px)}}
-.prod .art svg{width:120px;stroke-width:1.6;filter:drop-shadow(0 0 10px rgba(214,186,128,.35))}
-.prod .art svg *{stroke-dasharray:1;stroke-dashoffset:1}
-.prod.in .art svg *{animation:draw 2.4s cubic-bezier(.6,0,.2,1) forwards,glowP 3s 2.4s ease-in-out infinite}
+.prod .art svg{width:120px;stroke-width:1.6;filter:none}
+.prod .art svg *{stroke-dasharray:1;stroke-dashoffset:0}
+.prod.in .art svg *{animation:draw 2.4s cubic-bezier(.6,0,.2,1) both,glowP 3s 2.4s ease-in-out infinite}
 .prod.in .art svg *:nth-child(2){animation-delay:.35s,2.4s}.prod.in .art svg *:nth-child(3){animation-delay:.7s,2.4s}.prod.in .art svg *:nth-child(4){animation-delay:1s,2.4s}
-@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes glowP{0%,100%{stroke:#d6ba80}50%{stroke:#fff1c9}}
 .prod h4,.prod p{transform:translateZ(30px)}
 .prod.in h4{animation:rise .9s .5s both}.prod.in p{animation:rise .9s .7s both}
@@ -176,13 +178,21 @@ section{max-width:1100px;margin:0 auto;padding:80px 22px}
 .prod .tag{position:absolute;top:16px;right:16px;z-index:2;font-size:10px;letter-spacing:.2em;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 .cap{position:relative;overflow:hidden;transition:transform .3s,border-color .3s}
 .cap:hover{transform:translateY(-3px);border-color:var(--gold)}
-.cap::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(243,226,181,.14),transparent);transform:skewX(-20deg);animation:sweep 5s ease-in-out infinite}
+.cap::after{content:"";position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(243,226,181,.14),transparent);transform:translateX(-200%) skewX(-20deg);will-change:transform;animation:sweep 5s ease-in-out infinite}
 .cap:nth-child(2)::after{animation-delay:.8s}.cap:nth-child(3)::after{animation-delay:1.6s}.cap:nth-child(4)::after{animation-delay:2.4s}
 .cap i{position:relative}
 .cap i::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid var(--gold);animation:ripple 2.6s ease-out infinite}
 @keyframes ripple{from{transform:scale(1);opacity:.8}to{transform:scale(1.9);opacity:0}}
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
 @media (max-width:760px){.products{grid-template-columns:1fr 1fr}.prod{min-height:220px;padding:14px}.prod h4{font-size:18px}.prod p{font-size:12px}.prod .art svg{width:90px}}
+.share-frame{position:relative;max-width:420px;margin:0 auto;border-radius:30px;overflow:hidden;padding:3px;isolation:isolate;box-shadow:0 30px 80px -20px rgba(214,170,90,.45)}
+.share-frame::before{content:"";position:absolute;left:50%;top:50%;width:160%;aspect-ratio:1;margin:-80% 0 0 -80%;z-index:-1;background:conic-gradient(from 0deg,transparent 0 55%,#f3e2b5 70%,#b0812f 78%,transparent 88%);animation:spinRing 4s linear infinite;will-change:transform}
+@keyframes spinRing{to{transform:rotate(360deg)}}
+.share-frame canvas{display:block;width:100%;height:auto;border-radius:27px;background:#0c0c0e}
+.share-frame .scan{position:absolute;left:12%;right:12%;top:16%;height:52%;pointer-events:none;background:linear-gradient(to bottom,rgba(255,226,160,.0),rgba(255,226,160,.0) 92%,rgba(255,230,170,.55) 99%,#fff3cf 100%);mix-blend-mode:screen;animation:scanQR 3.2s cubic-bezier(.5,0,.5,1) infinite alternate;will-change:transform;opacity:.9}
+@keyframes scanQR{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+.share-btns{display:grid;grid-template-columns:2fr 1fr;gap:10px;max-width:420px;margin:18px auto 0}
+.share-btns .btn-primary{margin:0}
 .capab{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
 .cap{display:flex;gap:14px;padding:18px;border-radius:16px;border:1px solid var(--line);background:var(--panel)}
 .cap i{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--gold3);display:grid;place-items:center;font-style:normal;color:var(--gold);font-family:var(--serif)}
@@ -334,6 +344,19 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
   <button class="btn-primary reveal" id="saveContact" data-i18n="saveContact"></button>
 </section>
 
+<!-- QR CHIA SẺ -->
+<section id="share">
+  <div class="sec-head reveal">
+    <div class="eyebrow" data-i18n="shareEyebrow"></div>
+    <h2 data-i18n="shareTitle"></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="reveal">
+    <div class="share-frame"><canvas id="shareQR" width="1000" height="1250" aria-label="QR"></canvas><span class="scan"></span></div>
+    <div class="share-btns"><button class="btn-primary" id="dlQR" data-i18n="dlQR"></button><button class="btn-ghost" id="copyLink" data-i18n="copyLink"></button></div>
+  </div>
+</section>
+
 <!-- NĂNG LỰC -->
 <section id="about">
   <div class="sec-head reveal">
@@ -384,6 +407,7 @@ const CONFIG = {
   zalo: "0989985985",                  // Số Zalo
   wechatId: "tuantu_packaging",        // WeChat ID (hoặc link QR WeChat)
   email: "info@tuantu.com.vn",         // Email doanh nghiệp
+  shareUrl: "https://trungtoanit.github.io/namecard/", // QR chia sẻ namecard
   website: "tuantu.com.vn",            // Tên miền chính thức
   avatar: "assets/ceo.jpg",            // Ảnh chân dung
   // Video nhà máy: thêm file vào thư mục assets/ rồi khai báo ở đây
@@ -398,6 +422,7 @@ const I18N = {
     heroLead:"Tham quan nhà máy Bao Bì Tuấn Tú ngay trên điện thoại – chạm, lật thẻ và kết nối trực tiếp với Chủ tịch HĐQT.",
     vDemo:"Mô phỏng nhà máy", vUpload:"＋ Chọn video của bạn", vLine:"Dây chuyền in", vWarehouse:"Kho thành phẩm",
     cardTitle:"Thẻ NFC kim loại", cardHint:"Chạm vào thẻ để <b>lật 180°</b> · di chuyển để xem ánh kim",
+    shareEyebrow:"Chia sẻ namecard", shareTitle:"Quét mã – Kết nối ngay", dlQR:"Tải ảnh QR", copyLink:"Sao chép link", qrCta:"Quét để kết nối",
     name:"Nguyễn Trung Toán", heroName:'Nguyễn <span class="gold-text">Trung Toán</span>',
     title:"Chủ Tịch HĐQT | Chairman", company:"BAO BÌ TUẤN TÚ",
     tagline:"Xây dựng niềm tin. Mang đến sự vượt trội.", slogans:[["Vượt giới hạn bao bì.", "Vượt trên kỳ vọng."], ["Đóng gói", "thành công của bạn."], ["Xây dựng niềm tin.", "Mang đến sự vượt trội."], ["Nơi bao bì", "kiến tạo giá trị."], ["Thương hiệu của bạn.", "Cam kết của chúng tôi."], ["Chúng tôi tạo bao bì.", "Bạn tỏa sáng."], ["Thiết kế để gây ấn tượng.", "Sản xuất để bảo vệ."]], tapline:"Chạm. Kết nối. Khám phá.",
@@ -420,6 +445,7 @@ const I18N = {
     heroLead:"Tour the Tuan Tu Packaging factory right from your phone – tap, flip the card and connect directly with the Chairman.",
     vDemo:"Factory simulation", vUpload:"＋ Choose your video", vLine:"Printing line", vWarehouse:"Warehouse",
     cardTitle:"Metal NFC Card", cardHint:"Tap the card to <b>flip 180°</b> · move to see the metallic sheen",
+    shareEyebrow:"Share this card", shareTitle:"Scan & Connect Instantly", dlQR:"Download QR", copyLink:"Copy link", qrCta:"Scan to connect",
     name:"Nguyen Trung Toan", heroName:'Nguyen <span class="gold-text">Trung Toan</span>',
     title:"Chairman of the Board", company:"TUAN TU PACKAGING",
     tagline:"Building Trust. Delivering Excellence.", slogans:[["Beyond Packaging.", "Beyond Expectations."], ["Packaging", "Your Success."], ["Building Trust.", "Delivering Excellence."], ["Where Packaging", "Creates Value."], ["Your Brand.", "Our Commitment."], ["We Package.", "You Shine."], ["Designed to Impress.", "Built to Protect."]], tapline:"Tap. Connect. Discover.",
@@ -442,6 +468,7 @@ const I18N = {
     heroLead:"在手机上参观俊秀包装工厂——轻触、翻转名片，直接联系董事长。",
     vDemo:"工厂模拟", vUpload:"＋ 选择您的视频", vLine:"印刷生产线", vWarehouse:"成品仓库",
     cardTitle:"金属NFC名片", cardHint:"轻触名片<b>翻转180°</b> · 移动查看金属光泽",
+    shareEyebrow:"分享名片", shareTitle:"扫码 · 即刻联系", dlQR:"下载二维码", copyLink:"复制链接", qrCta:"扫码联系我",
     name:"阮忠算", heroName:'<span class="gold-text">阮忠算</span>',
     title:"董事长 | Chairman", company:"俊秀包装",
     tagline:"建立信任，成就卓越。", slogans:[["超越包装，", "超越期待。"], ["包装", "您的成功。"], ["建立信任，", "成就卓越。"], ["让包装", "创造价值。"], ["您的品牌，", "我们的承诺。"], ["我们包装，", "您闪耀。"], ["设计出众，", "守护周全。"]], tapline:"轻触 · 连接 · 发现",
@@ -501,6 +528,7 @@ function applyLang(l){
   if(typeof wireShowroom==='function')wireShowroom();
   buildVideoSwitch();
   if(typeof showSlogan==='function')showSlogan();
+  if(typeof renderShare==='function')renderShare();
 }
 $$('.langs button').forEach(b=>b.onclick=()=>{ses.set('lang',b.dataset.lang);applyLang(b.dataset.lang)});
 
@@ -525,7 +553,7 @@ $('#aWechat').onclick=()=>$('#wechatModal').classList.add('open');
 $$('[data-close]').forEach(b=>b.onclick=()=>b.closest('.modal').classList.remove('open'));
 $('#wechatModal').onclick=e=>{if(e.target.id==='wechatModal')e.target.classList.remove('open')};
 $('#aShare').onclick=async()=>{
-  const data={title:I18N[lang].name+' · '+I18N[lang].company,url:pageUrl};
+  const data={title:I18N[lang].name+' · '+I18N[lang].company,url:CONFIG.shareUrl};
   if(navigator.share){try{await navigator.share(data)}catch(e){} }
   else{try{await navigator.clipboard.writeText(pageUrl);toast(I18N[lang].copied)}catch(e){prompt('URL',pageUrl)}}
 };
@@ -546,12 +574,13 @@ function tilt(x,y){ // x,y in -1..1
 card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();tilt((e.clientX-r.left)/r.width*2-1,(e.clientY-r.top)/r.height*2-1)});
 card.addEventListener('pointerleave',()=>tilt(0,0));
 window.addEventListener('deviceorientation',e=>{if(e.gamma==null)return;tilt(Math.max(-1,Math.min(1,e.gamma/30)),Math.max(-1,Math.min(1,(e.beta-45)/30)))});
-let idle=0;(function float(){idle+=.012;if(!card.matches(':hover'))$$('.glare').forEach(g=>g.style.setProperty('--gx',`${Math.sin(idle)*45}%`));requestAnimationFrame(float)})();
+let idle=0;let cardVis=false;new IntersectionObserver(e=>{cardVis=e[0].isIntersecting}).observe(card);
+(function float(){idle+=.012;if(cardVis&&!card.matches(':hover'))$$('.glare').forEach(g=>g.style.setProperty('--gx',`${Math.sin(idle)*45}%`));requestAnimationFrame(float)})();
 
 /* ---------- Hero: factory simulation canvas + video switch ---------- */
 const cv=$('#factoryCanvas'),ctx=cv.getContext('2d'),vid=$('#heroVideo');
 let W,H,t=0,simOn=true;
-function resize(){const dpr=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+function resize(){const dpr=Math.min(devicePixelRatio||1,1.5);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
 addEventListener('resize',resize);resize();
 const sparks=Array.from({length:60},()=>({x:Math.random(),y:Math.random(),s:Math.random()*1.6+.4,v:Math.random()*.0008+.0002}));
 /* conveyor products */
@@ -587,10 +616,10 @@ function drawItem(it,by){
   ctx.save();
   // small bump from the rollers
   ctx.translate(0,-Math.abs(Math.sin(t*.09+ph))*1.6);
-  ctx.shadowColor=`rgba(255,214,140,${.35+.55*g})`;ctx.shadowBlur=8+28*g+6*pulse;
+  
   switch(it.type){
     case 'carton':{const w=70,h=46,y=box3d(x,by,w,h,14,lin(x,by-h,x+w,by,'#c9a96a','#7d6236'),'#e7d3a3','#5e4826');
-      ctx.shadowBlur=0;
+      
       const f=(Math.sin(t*.045+ph)+1)*7; // flaps opening / closing
       ctx.fillStyle='#d8bf88';
       ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+w,y);ctx.lineTo(x+w-6,y-f);ctx.lineTo(x+6,y-f);ctx.fill();
@@ -600,14 +629,14 @@ function drawItem(it,by){
       ctx.fillStyle='rgba(30,22,10,.55)';ctx.font='600 10px "Cormorant Garamond", serif';ctx.textAlign='center';ctx.fillText('TUẤN TÚ',x+w/2,y+29);break}
     case 'offset':{const w=56,h=30,lift=Math.max(0,Math.sin(t*.04+ph))*10;
       box3d(x,by,w,h,10,lin(x,by-h,x+w,by,'#f6efe0','#cdbd9c'),'#fffaf0','#a8977a');
-      ctx.shadowBlur=0;
+      
       // lid lifting up and down
       const ly=by-h-lift; box3d(x-2,ly,w+4,12,10,lin(x,ly-12,x+w,ly,'#c0342b','#7e1712'),'#d9564c','#5e0f0b');
       ctx.fillStyle='#d6ba80';ctx.fillRect(x-2,ly-4,w+4,1.5);
       if(lift>2){ctx.fillStyle=`rgba(255,230,170,${lift/14})`;ctx.fillRect(x+4,by-h-lift+1,w-8,lift-1)}
       ctx.strokeStyle='#b08a4c';ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(x+w/2,by-h/2,6,0,7);ctx.stroke();break}
     case 'gift':{const w=52,h=40,y=box3d(x,by,w,h,10,lin(x,by-h,x+w,by,'#8e1f1f','#4a0d0d'),'#a83232','#3a0909');
-      ctx.shadowBlur=0;
+      
       ctx.fillStyle=lin(x,y,x,by,'#f3e2b5','#b38b4a');ctx.fillRect(x+w/2-3,y,6,h);
       ctx.fillStyle='#e8cf96';ctx.beginPath();ctx.moveTo(x+w/2+2,y-3.5);ctx.lineTo(x+w/2+8,y-3.5);ctx.lineTo(x+w/2+3,y);ctx.lineTo(x+w/2-3,y);ctx.fill();
       const s=1+.12*Math.sin(t*.08+ph), bx=x+w/2+4, byy=y-6; // bow breathing
@@ -621,18 +650,18 @@ function drawItem(it,by){
       const y=by-h;
       ctx.fillStyle='#6e5230';ctx.beginPath();ctx.moveTo(x+w,y);ctx.lineTo(x+w+10,y-5);ctx.lineTo(x+w+10,by-5);ctx.lineTo(x+w,by);ctx.fill();
       ctx.fillStyle=lin(x,y,x+w,by,'#d2b07a','#9a7442');ctx.fillRect(x,y,w,h);
-      ctx.shadowBlur=0;
+      
       ctx.strokeStyle='#3b2c18';ctx.lineWidth=2;const hs=Math.sin(t*.07+ph)*5;
       ctx.beginPath();ctx.moveTo(x+12,y);ctx.bezierCurveTo(x+12+hs,y-22,x+w-12+hs,y-22,x+w-12,y);ctx.stroke();
       ctx.fillStyle='rgba(40,28,12,.6)';ctx.font='600 8px "Cormorant Garamond", serif';ctx.textAlign='center';ctx.fillText('TUẤN TÚ',x+w/2,y+32);break}
     case 'label':{const r=22,rx=x+r,ry=by-r,rot=t*.05+ph;
       ctx.fillStyle='#f4ecdc';ctx.fillRect(rx,by-6,52,5);
-      ctx.shadowBlur=0;
+      
       const off=(t*.6+ph*10)%10; ctx.fillStyle='#d6ba80';
       for(let i=0;i<5;i++){const lx=rx+4+i*10+off;if(lx<rx+48)ctx.fillRect(lx,by-5.5,7,4)}
-      ctx.shadowBlur=8+28*g;
+      
       ctx.fillStyle=lin(rx-r,ry-r,rx+r,ry+r,'#fffaf0','#c9b996');ctx.beginPath();ctx.arc(rx,ry,r,0,7);ctx.fill();
-      ctx.shadowBlur=0;
+      
       ctx.strokeStyle='rgba(160,130,80,.5)';ctx.lineWidth=1;for(let k=r-4;k>9;k-=4){ctx.beginPath();ctx.arc(rx,ry,k,0,7);ctx.stroke()}
       ctx.strokeStyle='#b08a4c';ctx.lineWidth=1.5; // spinning marks
       for(let k=0;k<3;k++){const a=rot+k*2.094;ctx.beginPath();ctx.moveTo(rx+Math.cos(a)*10,ry+Math.sin(a)*10);ctx.lineTo(rx+Math.cos(a)*19,ry+Math.sin(a)*19);ctx.stroke()}
@@ -640,18 +669,21 @@ function drawItem(it,by){
     case 'barcode':{const w=52,h=36,y=by-h;
       ctx.fillStyle='#8a7a5e';ctx.beginPath();ctx.moveTo(x+w,y);ctx.lineTo(x+w+5,y-3);ctx.lineTo(x+w+5,by-3);ctx.lineTo(x+w,by);ctx.fill();
       ctx.fillStyle='#f7f2e6';ctx.fillRect(x,y,w,h);
-      ctx.shadowBlur=0;
+      
       ctx.fillStyle='#111';let bx=x+5;it.bars.forEach((b,i)=>{if(i%2===0)ctx.fillRect(bx,y+4,b,20);bx+=b+0.6});
       ctx.font='7px monospace';ctx.fillText(it.code,x+4,y+32);
       const sy=y+4+(Math.sin(t*.09+ph)+1)*10; // red laser scanning
-      ctx.shadowColor='rgba(255,40,40,.9)';ctx.shadowBlur=8;ctx.fillStyle='rgba(255,60,60,.9)';ctx.fillRect(x-3,sy,w+6,1.4);break}
+      ctx.fillStyle='rgba(255,60,60,.9)';ctx.fillRect(x-3,sy,w+6,1.4);break}
   }
   ctx.restore();
+  if(g>.08){ctx.globalCompositeOperation='lighter';const gl=ctx.createRadialGradient(cx+6,by-26,2,cx+6,by-26,62);gl.addColorStop(0,`rgba(255,220,150,${.22*g+.05*pulse})`);gl.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=gl;ctx.fillRect(cx-60,by-92,132,100);ctx.globalCompositeOperation='source-over'}
   // twinkle on top when inside a light beam
   if(g>.35)sparkle(cx+18,by-62,4*g*pulse+1,g*pulse);
 }
+let heroVis=true;new IntersectionObserver(e=>{heroVis=e[0].isIntersecting}).observe(document.getElementById('hero'));
 function drawFactory(){
   if(!simOn)return;
+  if(!heroVis||document.hidden){requestAnimationFrame(drawFactory);return}
   t+=1;
   const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#1b1814');g.addColorStop(1,'#0b0b0d');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
   // light beams
@@ -697,6 +729,7 @@ const fx=$('#fx'),fctx=fx.getContext('2d'),parts=[],rings=[];let fxOn=false;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function fxSize(){const d=Math.min(devicePixelRatio||1,2);fx.width=innerWidth*d;fx.height=innerHeight*d;fctx.setTransform(d,0,0,d,0,0)}
 addEventListener('resize',fxSize);fxSize();
+const SPR=document.createElement('canvas');SPR.width=SPR.height=32;{const x=SPR.getContext('2d'),g=x.createRadialGradient(16,16,0,16,16,16);g.addColorStop(0,'rgba(255,225,160,.9)');g.addColorStop(.35,'rgba(255,200,120,.35)');g.addColorStop(1,'rgba(255,200,120,0)');x.fillStyle=g;x.fillRect(0,0,32,32)}
 const GOLDS=['#fff3cf','#f3e2b5','#e8c47a','#d6ba80','#b8893f','#ffd98a'];
 function burst(x,y,n=70,power=1){
   if(reduce)return;
@@ -713,21 +746,21 @@ function fxLoop(){
     fctx.strokeStyle=`rgba(255,220,150,${g.life*.7})`;fctx.lineWidth=2.5*g.life;fctx.beginPath();fctx.arc(g.x,g.y,g.r,0,7);fctx.stroke()}
   for(let i=parts.length-1;i>=0;i--){const p=parts[i];p.vx*=.975;p.vy=p.vy*.975+.12;p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;p.rot+=.1;
     if(p.life<=0){parts.splice(i,1);continue}
-    fctx.globalAlpha=p.life;fctx.fillStyle=p.c;fctx.shadowColor=p.c;fctx.shadowBlur=12;
+    fctx.globalAlpha=p.life;fctx.fillStyle=p.c;fctx.drawImage(SPR,p.x-p.s*4,p.y-p.s*4,p.s*8,p.s*8);
     if(p.star)drawStar(p.x,p.y,p.s,p.rot);else{fctx.beginPath();fctx.arc(p.x,p.y,p.s,0,7);fctx.fill()}}
-  fctx.globalAlpha=1;fctx.shadowBlur=0;fctx.globalCompositeOperation='source-over';
+  fctx.globalAlpha=1;fctx.globalCompositeOperation='source-over';
   if(parts.length||rings.length)requestAnimationFrame(fxLoop);else{fxOn=false;fctx.clearRect(0,0,innerWidth,innerHeight)}
 }
 const burstIO=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;burstIO.unobserve(el);
-  setTimeout(()=>burstEl(el,el.classList.contains('prod')?55:25,el.classList.contains('prod')?1:.6),(+el.dataset.i||0)*160+300)}),{threshold:.5});
+  setTimeout(()=>burstEl(el,el.classList.contains('prod')?34:14,el.classList.contains('prod')?1:.6),(+el.dataset.i||0)*160+300)}),{threshold:.5});
 function wireShowroom(){
   $$('.prod,.cap').forEach((el,i)=>{
     el.dataset.i=i%6; io.observe(el); burstIO.observe(el);
     if(document.documentElement.dataset.revealed)el.classList.add('in');
-    el.addEventListener('click',e=>burst(e.clientX,e.clientY,90,1.3));
+    el.addEventListener('click',e=>burst(e.clientX,e.clientY,50,1.2));
     if(!el.classList.contains('prod'))return;
     let last=0;
-    el.addEventListener('pointerenter',e=>{const now=Date.now();if(now-last>900){last=now;burst(e.clientX,e.clientY,22,.6)}});
+    el.addEventListener('pointerenter',e=>{const now=Date.now();if(now-last>900){last=now;burst(e.clientX,e.clientY,12,.6)}});
     el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
       el.style.setProperty('--mx',px*100+'%');el.style.setProperty('--my',py*100+'%');
       el.style.transform=`rotateX(${(.5-py)*14}deg) rotateY(${(px-.5)*16}deg) translateZ(10px)`});
@@ -735,7 +768,19 @@ function wireShowroom(){
   });
 }
 // card flip & stats also celebrate
-$('#card3d').addEventListener('click',()=>setTimeout(()=>burstEl($('#card3d'),80,1.2),350));
+$('#card3d').addEventListener('click',()=>setTimeout(()=>burstEl($('#card3d'),50,1.1),350));
+
+/* ---------- share QR poster ---------- */
+let shareJob=0;
+async function renderShare(){
+  if(!window.drawShareQR||!window.QRCode)return;
+  const job=++shareJob, d=I18N[lang], tmp=document.createElement('canvas');
+  await drawShareQR(tmp,{url:CONFIG.shareUrl,name:d.name.toUpperCase(),title:d.title,cta:d.qrCta,logo:'assets/logo-gold.png'});
+  if(job!==shareJob)return;
+  const c=$('#shareQR');c.width=tmp.width;c.height=tmp.height;c.getContext('2d').drawImage(tmp,0,0);
+}
+$('#dlQR').onclick=()=>$('#shareQR').toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='QR-Namecard-NguyenTrungToan.png';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)},'image/png');
+$('#copyLink').onclick=async()=>{try{await navigator.clipboard.writeText(CONFIG.shareUrl);toast(I18N[lang].copied)}catch(e){prompt('URL',CONFIG.shareUrl)}};
 
 let si=0, sTimer;
 function showSlogan(){
