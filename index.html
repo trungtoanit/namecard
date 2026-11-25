@@ -332,7 +332,7 @@ const I18N = {
     vDemo:"Mô phỏng nhà máy", vUpload:"＋ Chọn video của bạn", vLine:"Dây chuyền in", vWarehouse:"Kho thành phẩm",
     cardTitle:"Thẻ NFC kim loại", cardHint:"Chạm vào thẻ để <b>lật 180°</b> · di chuyển để xem ánh kim",
     title:"Chủ Tịch HĐQT · Chairman", company:"BAO BÌ TUẤN TÚ",
-    address:"Khu công nghiệp ·  Việt Nam",
+    address:"48/13 Khu Phố Bình Phước B, An Phú, Thuận An, Bình Dương",
     quote:"“Mỗi chiếc hộp là lời cam kết về chất lượng của Tuấn Tú.”",
     call:"Gọi điện", share:"Chia sẻ", saveContact:"Lưu danh bạ",
     aboutEyebrow:"Hồ sơ năng lực", aboutTitle:"Năng lực sản xuất",
@@ -352,7 +352,7 @@ const I18N = {
     vDemo:"Factory simulation", vUpload:"＋ Choose your video", vLine:"Printing line", vWarehouse:"Warehouse",
     cardTitle:"Metal NFC Card", cardHint:"Tap the card to <b>flip 180°</b> · move to see the metallic sheen",
     title:"Chairman of the Board", company:"TUAN TU PACKAGING",
-    address:"Industrial Zone · Vietnam",
+    address:"48/13 Binh Phuoc B Quarter, An Phu, Thuan An, Binh Duong, Vietnam",
     quote:"“Every box is Tuan Tu’s promise of quality.”",
     call:"Call", share:"Share", saveContact:"Save contact",
     aboutEyebrow:"Company profile", aboutTitle:"Manufacturing Capability",
@@ -372,7 +372,7 @@ const I18N = {
     vDemo:"工厂模拟", vUpload:"＋ 选择您的视频", vLine:"印刷生产线", vWarehouse:"成品仓库",
     cardTitle:"金属NFC名片", cardHint:"轻触名片<b>翻转180°</b> · 移动查看金属光泽",
     title:"董事长 · Chairman", company:"俊秀包装",
-    address:"工业园区 · 越南",
+    address:"越南平阳省顺安市安富坊平福B区48/13号",
     quote:"“每一个盒子都是俊秀对品质的承诺。”",
     call:"拨打电话", share:"分享", saveContact:"保存联系人",
     aboutEyebrow:"企业简介", aboutTitle:"生产能力",
@@ -442,7 +442,7 @@ $('#aShare').onclick=async()=>{
 };
 function download(name,content,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 $('#saveContact').onclick=()=>{
-  const v=['BEGIN:VCARD','VERSION:3.0',`FN:${CONFIG.name}`,`ORG:Bao Bì Tuấn Tú`,`TITLE:Chairman of the Board`,`TEL;TYPE=CELL:${CONFIG.phone}`,`EMAIL:${CONFIG.email}`,`URL:https://${CONFIG.website}`,`NOTE:Digital card ${pageUrl}`,'END:VCARD'].join('\r\n');
+  const v=['BEGIN:VCARD','VERSION:3.0',`FN:${CONFIG.name}`,`ORG:Bao Bì Tuấn Tú`,`TITLE:Chairman of the Board`,`TEL;TYPE=CELL:${CONFIG.phone}`,`EMAIL:${CONFIG.email}`,`URL:https://${CONFIG.website}`,`ADR;TYPE=WORK:;;48/13 Khu Phố Bình Phước B, An Phú;Thuận An;Bình Dương;;Việt Nam`,`NOTE:Digital card ${pageUrl}`,'END:VCARD'].join('\r\n');
   download('TuanTu-CEO.vcf',v,'text/vcard');toast(I18N[lang].saved);
 };
 
