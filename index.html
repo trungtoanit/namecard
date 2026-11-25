@@ -313,11 +313,11 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
    ========================================================= */
 const CONFIG = {
   name: "NGUYỄN TRUNG TOÁN",          // Họ tên CEO
-  phone: "+84 900 000 000",            // Số điện thoại
-  zalo: "0900000000",                  // Số Zalo
+  phone: "0989 985 985",              // Số điện thoại
+  zalo: "0989985985",                  // Số Zalo
   wechatId: "tuantu_packaging",        // WeChat ID (hoặc link QR WeChat)
-  email: "ceo@baobituantu.vn",         // Email doanh nghiệp
-  website: "baobituantu.vn",           // Tên miền chính thức
+  email: "info@tuantu.com.vn",         // Email doanh nghiệp
+  website: "tuantu.com.vn",            // Tên miền chính thức
   avatar: "",                          // Đường dẫn ảnh chân dung, ví dụ "assets/ceo.jpg"
   // Video nhà máy: thêm file vào thư mục assets/ rồi khai báo ở đây
   videos: [
@@ -328,10 +328,10 @@ const CONFIG = {
 const I18N = {
   vi:{
     heroEyebrow:"Tuấn Tú Packaging · Executive Edition",
-    heroLead:"Tham quan nhà máy Bao Bì Tuấn Tú ngay trên điện thoại – chạm, lật thẻ và kết nối trực tiếp với CEO.",
+    heroLead:"Tham quan nhà máy Bao Bì Tuấn Tú ngay trên điện thoại – chạm, lật thẻ và kết nối trực tiếp với Chủ tịch HĐQT.",
     vDemo:"Mô phỏng nhà máy", vUpload:"＋ Chọn video của bạn", vLine:"Dây chuyền in", vWarehouse:"Kho thành phẩm",
     cardTitle:"Thẻ NFC kim loại", cardHint:"Chạm vào thẻ để <b>lật 180°</b> · di chuyển để xem ánh kim",
-    title:"Tổng Giám Đốc · CEO", company:"BAO BÌ TUẤN TÚ",
+    title:"Chủ Tịch HĐQT · Chairman", company:"BAO BÌ TUẤN TÚ",
     address:"Khu công nghiệp ·  Việt Nam",
     quote:"“Mỗi chiếc hộp là lời cam kết về chất lượng của Tuấn Tú.”",
     call:"Gọi điện", share:"Chia sẻ", saveContact:"Lưu danh bạ",
@@ -348,10 +348,10 @@ const I18N = {
   },
   en:{
     heroEyebrow:"Tuan Tu Packaging · Executive Edition",
-    heroLead:"Tour the Tuan Tu Packaging factory right from your phone – tap, flip the card and connect directly with the CEO.",
+    heroLead:"Tour the Tuan Tu Packaging factory right from your phone – tap, flip the card and connect directly with the Chairman.",
     vDemo:"Factory simulation", vUpload:"＋ Choose your video", vLine:"Printing line", vWarehouse:"Warehouse",
     cardTitle:"Metal NFC Card", cardHint:"Tap the card to <b>flip 180°</b> · move to see the metallic sheen",
-    title:"Chief Executive Officer", company:"TUAN TU PACKAGING",
+    title:"Chairman of the Board", company:"TUAN TU PACKAGING",
     address:"Industrial Zone · Vietnam",
     quote:"“Every box is Tuan Tu’s promise of quality.”",
     call:"Call", share:"Share", saveContact:"Save contact",
@@ -368,10 +368,10 @@ const I18N = {
   },
   zh:{
     heroEyebrow:"俊秀包装 · 行政版",
-    heroLead:"在手机上参观俊秀包装工厂——轻触、翻转名片，直接联系CEO。",
+    heroLead:"在手机上参观俊秀包装工厂——轻触、翻转名片，直接联系董事长。",
     vDemo:"工厂模拟", vUpload:"＋ 选择您的视频", vLine:"印刷生产线", vWarehouse:"成品仓库",
     cardTitle:"金属NFC名片", cardHint:"轻触名片<b>翻转180°</b> · 移动查看金属光泽",
-    title:"总经理 · CEO", company:"俊秀包装",
+    title:"董事长 · Chairman", company:"俊秀包装",
     address:"工业园区 · 越南",
     quote:"“每一个盒子都是俊秀对品质的承诺。”",
     call:"拨打电话", share:"分享", saveContact:"保存联系人",
@@ -442,7 +442,7 @@ $('#aShare').onclick=async()=>{
 };
 function download(name,content,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 $('#saveContact').onclick=()=>{
-  const v=['BEGIN:VCARD','VERSION:3.0',`FN:${CONFIG.name}`,`ORG:Bao Bì Tuấn Tú`,`TITLE:CEO`,`TEL;TYPE=CELL:${CONFIG.phone}`,`EMAIL:${CONFIG.email}`,`URL:https://${CONFIG.website}`,`NOTE:Digital card ${pageUrl}`,'END:VCARD'].join('\r\n');
+  const v=['BEGIN:VCARD','VERSION:3.0',`FN:${CONFIG.name}`,`ORG:Bao Bì Tuấn Tú`,`TITLE:Chairman of the Board`,`TEL;TYPE=CELL:${CONFIG.phone}`,`EMAIL:${CONFIG.email}`,`URL:https://${CONFIG.website}`,`NOTE:Digital card ${pageUrl}`,'END:VCARD'].join('\r\n');
   download('TuanTu-CEO.vcf',v,'text/vcard');toast(I18N[lang].saved);
 };
 
