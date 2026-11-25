@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="#f7ecdc"/><stop offset="1" stop-color="#e3cfb2"/></radialGradient>
+    <linearGradient id="front" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b98a52"/><stop offset=".35" stop-color="#cfa26a"/><stop offset=".7" stop-color="#c3955c"/><stop offset="1" stop-color="#a97b45"/></linearGradient>
+    <linearGradient id="frontV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".12" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8a5f32"/><stop offset=".5" stop-color="#a27240"/><stop offset="1" stop-color="#7b532b"/></linearGradient>
+    <linearGradient id="rope" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a1f15"/><stop offset=".5" stop-color="#4a3826"/><stop offset="1" stop-color="#1e160f"/></linearGradient>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1c4"/><stop offset=".4" stop-color="#d9ad5c"/><stop offset=".7" stop-color="#9c7330"/><stop offset="1" stop-color="#f0d08a"/></linearGradient>
+    <filter id="paper" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  0 0 0 .22 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+    <clipPath id="frontClip"><path d="M175 232H405L418 505H162Z"/></clipPath>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <ellipse cx="315" cy="512" rx="200" ry="26" fill="#5a4026" opacity=".35" filter="url(#soft)"/>
+  <!-- back handle -->
+  <path d="M245 228C250 128 340 128 345 228" fill="none" stroke="#1e160f" stroke-width="7" opacity=".7" transform="translate(28 -12)"/>
+  <!-- side gusset -->
+  <path d="M405 232 462 214 470 482 418 505Z" fill="url(#side)"/>
+  <path d="M405 232 433 300 462 214" fill="none" stroke="#6d4824" stroke-width="2" opacity=".6"/>
+  <path d="M433 300 444 494" stroke="#6d4824" stroke-width="1.5" opacity=".45"/>
+  <!-- front -->
+  <path d="M175 232H405L418 505H162Z" fill="url(#front)"/>
+  <path d="M175 232H405L418 505H162Z" fill="url(#frontV)"/>
+  <g clip-path="url(#frontClip)"><rect x="150" y="220" width="290" height="300" fill="#c79a62" filter="url(#paper)"/></g>
+  <path d="M175 232H405L407 272H173Z" fill="#fff" opacity=".07"/>
+  <path d="M173 272H407" stroke="#7d5530" stroke-width="1.2" opacity=".5"/>
+  <path d="M163 470H417" stroke="#7d5530" stroke-width="1" opacity=".35"/>
+  <!-- light streak -->
+  <path d="M215 232 240 232 222 505 196 505Z" fill="#fff" opacity=".08"/>
+  <!-- handle holes -->
+  <circle cx="245" cy="252" r="6" fill="#3a2717"/><circle cx="335" cy="252" r="6" fill="#3a2717"/>
+  <!-- front handle (rope) -->
+  <path d="M245 252C246 134 334 134 335 252" fill="none" stroke="url(#rope)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M247 240C250 146 330 146 333 240" fill="none" stroke="#7a6046" stroke-width="2" stroke-dasharray="5 6" opacity=".6"/>
+  <!-- gold foil logo + brand -->
+  <g transform="translate(290 350)">
+    <path d="M0-48 41-24V24L0 48-41 24V-24Z" fill="none" stroke="url(#foil)" stroke-width="5"/>
+    <path d="M0-38 32-20 0-2-32-20Z" fill="none" stroke="url(#foil)" stroke-width="3.5"/>
+    <path d="M-34-12-4 5V40L-12 35V12L-34 0Z" fill="url(#foil)"/>
+    <path d="M34-12 4 5V40L12 35V12L34 0Z" fill="url(#foil)"/>
+  </g>
+  <text x="290" y="448" text-anchor="middle" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="700" font-size="25" letter-spacing="2" fill="url(#foil)">BAO BÌ TUẤN TÚ</text>
+  <text x="290" y="472" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" letter-spacing="5" fill="#5b3d20" opacity=".8">TUAN TU PACKAGING</text>
+</svg>

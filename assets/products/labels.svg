@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="#f3ece4"/><stop offset="1" stop-color="#d9cdbf"/></radialGradient>
+    <linearGradient id="rollSide" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#eee8df"/><stop offset="1" stop-color="#c9c0b3"/></linearGradient>
+    <radialGradient id="rollFace" cx="45%" cy="40%" r="65%"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e2dbd0"/></radialGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b48a55"/><stop offset="1" stop-color="#7a5a33"/></linearGradient>
+    <linearGradient id="strip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf8f2"/><stop offset="1" stop-color="#e6dfd3"/></linearGradient>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1c4"/><stop offset=".4" stop-color="#d9ad5c"/><stop offset=".7" stop-color="#9c7330"/><stop offset="1" stop-color="#f0d08a"/></linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d7372d"/><stop offset="1" stop-color="#8d1510"/></linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="12"/></filter>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#3b2c1c" flood-opacity=".28"/></filter>
+    <g id="lbl">
+      <rect x="-46" y="-30" width="92" height="60" rx="8" fill="#1b1a1d"/>
+      <rect x="-41" y="-25" width="82" height="50" rx="6" fill="none" stroke="url(#foil)" stroke-width="2"/>
+      <path d="M-26-9-16-15-6-9V3L-16 9-26 3Z" fill="none" stroke="url(#foil)" stroke-width="2"/>
+      <rect x="2" y="-10" width="30" height="5" rx="2" fill="url(#foil)"/>
+      <rect x="2" y="0" width="22" height="3" rx="1.5" fill="#d9ad5c" opacity=".7"/>
+      <rect x="2" y="7" width="26" height="3" rx="1.5" fill="#d9ad5c" opacity=".5"/>
+    </g>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <ellipse cx="300" cy="455" rx="240" ry="30" fill="#4a3a28" opacity=".3" filter="url(#soft)"/>
+  <!-- unrolled strip going to the right -->
+  <path d="M250 438 560 404 566 452 262 492Z" fill="url(#strip)" filter="url(#sh)"/>
+  <g transform="matrix(1 -.11 0 1 0 0)">
+    <use href="#lbl" transform="translate(340 488) scale(.62)"/>
+    <use href="#lbl" transform="translate(416 488) scale(.62)"/>
+    <use href="#lbl" transform="translate(492 488) scale(.62)"/>
+  </g>
+  <!-- roll body (cylinder seen from the side) -->
+  <path d="M150 230H260V470H150Z" fill="url(#rollSide)"/>
+  <ellipse cx="150" cy="350" rx="68" ry="120" fill="#d4cabc"/>
+  <ellipse cx="260" cy="350" rx="68" ry="120" fill="url(#rollFace)" filter="url(#sh)"/>
+  <g fill="none" stroke="#cfc5b6" stroke-width="1">
+    <ellipse cx="260" cy="350" rx="60" ry="106"/><ellipse cx="260" cy="350" rx="52" ry="92"/><ellipse cx="260" cy="350" rx="44" ry="78"/><ellipse cx="260" cy="350" rx="37" ry="65"/>
+  </g>
+  <ellipse cx="260" cy="350" rx="30" ry="53" fill="url(#core)"/>
+  <ellipse cx="262" cy="350" rx="21" ry="38" fill="#3e2c1a"/>
+  <path d="M226 260C240 250 256 248 268 254" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8" fill="none"/>
+  <!-- loose round stickers -->
+  <g transform="translate(445 215) rotate(-12)" filter="url(#sh)">
+    <circle r="62" fill="url(#red)"/><circle r="54" fill="none" stroke="url(#foil)" stroke-width="3"/>
+    <text y="-6" text-anchor="middle" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="800" font-size="20" fill="#fff4d8">CHÍNH</text>
+    <text y="18" text-anchor="middle" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="800" font-size="20" fill="#fff4d8">HÃNG</text>
+  </g>
+  <g transform="translate(372 120) rotate(14)" filter="url(#sh)">
+    <circle r="40" fill="url(#foil)"/><circle r="33" fill="none" stroke="#7a5420" stroke-width="2" stroke-dasharray="3 3"/>
+    <text y="7" text-anchor="middle" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="800" font-size="17" fill="#4d3210">100%</text>
+  </g>
+</svg>

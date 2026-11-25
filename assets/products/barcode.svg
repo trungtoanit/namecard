@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#e9eef2"/><stop offset="1" stop-color="#c7d0d8"/></radialGradient>
+    <linearGradient id="kTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9b47f"/><stop offset="1" stop-color="#c29a62"/></linearGradient>
+    <linearGradient id="kFront" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c79c62"/><stop offset="1" stop-color="#a77c45"/></linearGradient>
+    <linearGradient id="kSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#94693a"/><stop offset="1" stop-color="#7c5630"/></linearGradient>
+    <linearGradient id="label" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f6f4ef"/><stop offset="1" stop-color="#e6e2da"/></linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="1" y2="1"><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset=".7" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="laser" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff2b2b" stop-opacity="0"/><stop offset=".15" stop-color="#ff3b3b"/><stop offset=".85" stop-color="#ff3b3b"/><stop offset="1" stop-color="#ff2b2b" stop-opacity="0"/></linearGradient>
+    <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="9"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  0 0 0 .2 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#2b1d10" flood-opacity=".3"/></filter>
+    <filter id="glow" x="-10%" y="-200%" width="120%" height="500%"><feGaussianBlur stdDeviation="3"/></filter>
+    <clipPath id="fc"><path d="M110 250 360 320V540L110 470Z"/></clipPath>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <ellipse cx="330" cy="540" rx="250" ry="30" fill="#3a3024" opacity=".35" filter="url(#soft)"/>
+  <!-- kraft carton -->
+  <path d="M110 250 360 320 520 260 270 190Z" fill="url(#kTop)"/>
+  <path d="M110 250 360 320V540L110 470Z" fill="url(#kFront)"/>
+  <path d="M360 320 520 260V478L360 540Z" fill="url(#kSide)"/>
+  <g clip-path="url(#fc)"><rect x="100" y="240" width="270" height="310" fill="#c79c62" filter="url(#paper)"/></g>
+  <path d="M190 228 440 298 455 292 205 222Z" fill="#b08a56" opacity=".55"/>
+  <path d="M110 250 360 320 520 260" fill="none" stroke="#f1d9ae" stroke-width="1.5" opacity=".6"/>
+  <!-- barcode label stuck on the front face -->
+  <g transform="matrix(1 .28 0 1 140 302)" filter="url(#sh)">
+    <rect width="190" height="120" rx="6" fill="url(#label)"/>
+    <text x="14" y="22" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="12" fill="#1a1a1a">TUAN TU PACKAGING</text>
+    <text x="14" y="36" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555">SKU: TT-CTN-5L · 60×40×40</text>
+    <g fill="#111" transform="translate(14 44)">
+      <rect x="0" width="2" height="50"/><rect x="4" width="1" height="50"/><rect x="7" width="3" height="50"/><rect x="12" width="1" height="50"/><rect x="15" width="2" height="50"/><rect x="19" width="1" height="50"/><rect x="22" width="3" height="50"/><rect x="27" width="2" height="50"/><rect x="31" width="1" height="50"/><rect x="34" width="2" height="50"/><rect x="38" width="3" height="50"/><rect x="43" width="1" height="50"/><rect x="46" width="2" height="50"/><rect x="50" width="1" height="50"/><rect x="53" width="3" height="50"/><rect x="58" width="1" height="50"/><rect x="61" width="2" height="50"/><rect x="65" width="3" height="50"/><rect x="70" width="1" height="50"/><rect x="73" width="2" height="50"/><rect x="77" width="1" height="50"/><rect x="80" width="3" height="50"/><rect x="85" width="2" height="50"/><rect x="89" width="1" height="50"/><rect x="92" width="2" height="50"/><rect x="96" width="3" height="50"/><rect x="101" width="1" height="50"/><rect x="104" width="2" height="50"/><rect x="108" width="1" height="50"/><rect x="111" width="3" height="50"/><rect x="116" width="2" height="50"/>
+    </g>
+    <text x="14" y="110" font-family="Menlo, Courier, monospace" font-size="10" letter-spacing="1.5" fill="#222">8 936081 245679</text>
+    <g transform="translate(140 46)" fill="#111">
+      <rect width="36" height="36" fill="none" stroke="#111" stroke-width="1"/>
+      <rect x="3" y="3" width="9" height="9"/><rect x="24" y="3" width="9" height="9"/><rect x="3" y="24" width="9" height="9"/>
+      <rect x="15" y="5" width="3" height="3"/><rect x="18" y="12" width="3" height="3"/><rect x="14" y="17" width="4" height="4"/><rect x="22" y="16" width="3" height="3"/><rect x="26" y="21" width="5" height="3"/><rect x="16" y="26" width="3" height="5"/><rect x="22" y="27" width="4" height="3"/><rect x="28" y="29" width="3" height="3"/><rect x="6" y="16" width="4" height="3"/>
+    </g>
+    <rect width="190" height="120" rx="6" fill="url(#gloss)"/>
+    <!-- red scanner laser -->
+    <rect x="-20" y="68" width="230" height="5" fill="#ff3b3b" opacity=".55" filter="url(#glow)"/>
+    <rect x="-20" y="69.5" width="230" height="1.6" fill="url(#laser)"/>
+  </g>
+</svg>
