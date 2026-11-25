@@ -33,3 +33,7 @@ Thông tin còn thiếu:
 - Ảnh in ấn: `assets/qr-namecard.png` (1000×1250)
 - Trang poster: https://trungtoanit.github.io/namecard/qr.html (thêm `?lang=en` hoặc `?lang=zh`)
 - Quét QR → https://trungtoanit.github.io/namecard/
+
+## Video tham quan nhà máy
+- Khu "Tham quan nhà máy 4.0" trên trang (canvas, 14 trạm)
+- Video MP4 1280×720 ~97s: `assets/video/factory-tour-vi.mp4`, `-en.mp4`, `-zh.mp4`

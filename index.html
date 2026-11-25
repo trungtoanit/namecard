@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="assets/qr-art.js"></script>
+<script src="assets/factory.js"></script>
 <style>
 :root{
   --bg:#0b0b0d; --bg2:#141418; --panel:rgba(22,22,27,.72); --line:rgba(214,186,128,.22);
@@ -63,6 +64,20 @@ button,input,select,textarea{font:inherit;color:inherit}
 .slogan .dots i{width:6px;height:6px;border-radius:50%;background:rgba(214,186,128,.3);transition:.4s}
 .slogan .dots i.on{background:var(--gold2);box-shadow:0 0 10px var(--gold);width:18px;border-radius:3px}
 @media (max-width:760px){.slogan{top:13%;padding:0 14px}.slogan .l{white-space:nowrap;line-height:1.05}.slogan .l2{margin-top:.15em}}
+#factory{max-width:1240px}
+.tour{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#0b0b0d;box-shadow:0 40px 90px -30px rgba(214,170,90,.35)}
+.tour canvas{display:block;width:100%;aspect-ratio:16/9}
+.tour-ctrl{position:absolute;top:12px;left:12px;display:flex;gap:8px;z-index:2}
+.tour-ctrl button{border:1px solid var(--line);background:rgba(10,10,12,.7);backdrop-filter:blur(8px);color:var(--gold2);border-radius:999px;padding:8px 14px;font-size:12px;letter-spacing:.06em;cursor:pointer}
+.tour-ctrl button:hover{border-color:var(--gold)}
+.tour-ctrl button.rec{color:#1a1408;background:linear-gradient(120deg,var(--gold3),var(--gold2),var(--gold3));border:0;font-weight:600}
+.tour-chips{display:flex;gap:8px;overflow-x:auto;padding:16px 2px 4px;scrollbar-width:none}
+.tour-chips::-webkit-scrollbar{display:none}
+.tour-chips button{flex:none;border:1px solid var(--line);background:#141418;color:var(--muted);border-radius:999px;padding:8px 14px;font-size:12px;cursor:pointer;transition:.3s;white-space:nowrap}
+.tour-chips button b{color:var(--gold);font-weight:600;margin-right:6px}
+.tour-chips button.on{border-color:var(--gold);color:var(--gold2);background:rgba(214,186,128,.1)}
+.tour:fullscreen canvas{height:100%;object-fit:contain}
+@media (max-width:760px){.tour{border-radius:14px}.tour canvas{aspect-ratio:1/1}.tour-ctrl button{padding:6px 10px;font-size:11px}}
 .scroll-cue{position:absolute;left:50%;bottom:14px;z-index:2;transform:translateX(-50%);width:22px;height:36px;border:1px solid var(--gold3);border-radius:12px}
 .scroll-cue::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--gold);animation:cue 1.8s infinite}
 @keyframes cue{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
@@ -256,7 +271,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
 <body>
 
 <header class="topbar" id="topbar">
-  <div class="brand"><div class="logo"><img src="assets/logo-gold.png" alt="Tuấn Tú logo"></div><span class="name">TUẤN TÚ</span></div>
+  <div class="brand"><div class="logo"><img src="assets/logo-gold.png" alt="Tuấn Tú logo"></div><span class="name" data-i18n="brandShort"></span></div>
   <div class="langs" role="group" aria-label="Language">
     <button data-lang="vi" class="on">VI</button>
     <button data-lang="en">EN</button>
@@ -279,10 +294,26 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
   <div class="scroll-cue"></div>
 </div>
 
+<!-- THAM QUAN NHÀ MÁY -->
+<section id="factory">
+  <div class="sec-head reveal">
+    <div class="eyebrow" data-i18n="eyFactory"></div>
+    <h2 data-i18n="factoryTitle"></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="reveal">
+    <div class="tour" id="tour">
+      <canvas id="tourCanvas" aria-label="Factory simulation"></canvas>
+      <div class="tour-ctrl"><button id="tourPlay" aria-label="Pause">❚❚</button><button id="tourFull" aria-label="Fullscreen">⤢</button><button id="tourRec" class="rec" data-i18n="tourRec"></button></div>
+    </div>
+    <div class="tour-chips" id="tourChips"></div>
+  </div>
+</section>
+
 <!-- THẺ NFC 3D -->
 <section id="card">
   <div class="sec-head reveal">
-    <div class="eyebrow">Interactive NFC 3D</div>
+    <div class="eyebrow" data-i18n="eyCard"></div>
     <h2 data-i18n="cardTitle"></h2>
     <div class="divider"></div>
   </div>
@@ -316,7 +347,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
             <ellipse cx="320" cy="252" rx="150" ry="40" fill="url(#gStreak)"/>
             <path d="M170 251C260 246 340 232 398 196" fill="none" stroke="url(#gS)" stroke-width="1.4" stroke-opacity=".9"/>
           </svg>
-          <div class="fb-brand"><img src="assets/logo-gold.png" alt=""><div class="t gold-fill">BAO BÌ<br>TUẤN TÚ<small>TUAN TU PACKAGING</small></div></div>
+          <div class="fb-brand"><img src="assets/logo-gold.png" alt=""><div class="t gold-fill" data-i18n-html="cardBrand"></div></div>
           <div class="fb-name"><b class="gold-fill" data-i18n="name"></b><span data-i18n="title"></span></div>
           <div class="fb-tag gold-fill" data-i18n="tagline"></div>
         </div>
@@ -388,7 +419,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
 <!-- DIGITAL SHOWROOM -->
 <section id="showroom">
   <div class="sec-head reveal">
-    <div class="eyebrow">Digital Showroom</div>
+    <div class="eyebrow" data-i18n="eyShowroom"></div>
     <h2 data-i18n="showroomTitle"></h2>
     <div class="divider"></div>
   </div>
@@ -401,7 +432,7 @@ footer .f-brand{font-family:var(--serif);font-size:22px;color:var(--text);letter
   <img src="assets/logo-gold.png" alt="" style="width:54px;margin-bottom:10px">
   <div class="f-brand gold-text" data-i18n="company"></div>
   <div data-i18n="address"></div>
-  <div style="margin-top:10px">© <span id="year"></span> Tuan Tu Packaging · Nguyễn Trung Toán</div>
+  <div style="margin-top:10px">© <span id="year"></span> <span data-i18n="brandFull"></span> · <span data-i18n="name"></span></div>
 </footer>
 
 <div class="modal" id="wechatModal" role="dialog" aria-modal="true">
@@ -440,6 +471,9 @@ const I18N = {
     heroLead:"Tham quan nhà máy Bao Bì Tuấn Tú ngay trên điện thoại – chạm, lật thẻ và kết nối trực tiếp với lãnh đạo.",
     vDemo:"Mô phỏng nhà máy", vUpload:"＋ Chọn video của bạn", vLine:"Dây chuyền in", vWarehouse:"Kho thành phẩm",
     cardTitle:"Thẻ NFC kim loại", cardHint:"Chạm vào thẻ để <b>lật 180°</b> · di chuyển để xem ánh kim",
+    eyFactory:"Tham quan nhà máy ảo", eyCard:"Thẻ NFC tương tác 3D", eyShowroom:"Phòng trưng bày số",
+    brandShort:"TUẤN TÚ", brandFull:"BAO BÌ TUẤN TÚ", brandSub:"TUAN TU PACKAGING", cardBrand:"BAO BÌ<br>TUẤN TÚ<small>TUAN TU PACKAGING</small>",
+    factoryTitle:"Tham quan nhà máy 4.0", tourRec:"⬇ Tải video", tourRecording:"Đang ghi video", tourKeep:"Giữ trang mở đến khi ghi xong",
     shareEyebrow:"Chia sẻ namecard", shareTitle:"Quét mã – Kết nối ngay", dlQR:"Tải ảnh QR", copyLink:"Sao chép link", qrCta:"Quét để kết nối",
     name:"Nguyễn Trung Toán", heroName:'Nguyễn <span class="gold-text">Trung Toán</span>',
     title:"Chủ Tịch HĐQT | Chairman", company:"BAO BÌ TUẤN TÚ",
@@ -463,6 +497,9 @@ const I18N = {
     heroLead:"Tour the Tuan Tu Packaging factory right from your phone – tap, flip the card and connect directly with our leadership.",
     vDemo:"Factory simulation", vUpload:"＋ Choose your video", vLine:"Printing line", vWarehouse:"Warehouse",
     cardTitle:"Metal NFC Card", cardHint:"Tap the card to <b>flip 180°</b> · move to see the metallic sheen",
+    eyFactory:"Virtual Factory Tour", eyCard:"Interactive NFC 3D", eyShowroom:"Digital Showroom",
+    brandShort:"TUAN TU", brandFull:"TUAN TU PACKAGING", brandSub:"BAO BÌ TUẤN TÚ", cardBrand:"TUAN TU<br>PACKAGING<small>BAO BÌ TUẤN TÚ</small>",
+    factoryTitle:"Smart Factory Tour", tourRec:"⬇ Download video", tourRecording:"Recording", tourKeep:"Keep this page open until recording ends",
     shareEyebrow:"Share this card", shareTitle:"Scan & Connect Instantly", dlQR:"Download QR", copyLink:"Copy link", qrCta:"Scan to connect",
     name:"Nguyen Trung Toan", heroName:'Nguyen <span class="gold-text">Trung Toan</span>',
     title:"Chairman of the Board", company:"TUAN TU PACKAGING",
@@ -486,6 +523,9 @@ const I18N = {
     heroLead:"在手机上参观俊秀包装工厂——轻触、翻转名片，直接联系公司领导。",
     vDemo:"工厂模拟", vUpload:"＋ 选择您的视频", vLine:"印刷生产线", vWarehouse:"成品仓库",
     cardTitle:"金属NFC名片", cardHint:"轻触名片<b>翻转180°</b> · 移动查看金属光泽",
+    eyFactory:"虚拟工厂参观", eyCard:"3D互动NFC名片", eyShowroom:"数字展厅",
+    brandShort:"俊秀包装", brandFull:"俊秀包装", brandSub:"TUAN TU PACKAGING", cardBrand:"俊秀<br>包装<small>TUAN TU PACKAGING</small>",
+    factoryTitle:"智能工厂参观", tourRec:"⬇ 下载视频", tourRecording:"录制中", tourKeep:"录制完成前请保持页面打开",
     shareEyebrow:"分享名片", shareTitle:"扫码 · 即刻联系", dlQR:"下载二维码", copyLink:"复制链接", qrCta:"扫码联系我",
     name:"阮忠算", heroName:'<span class="gold-text">阮忠算</span>',
     title:"董事长 | Chairman", company:"俊秀包装",
@@ -540,6 +580,7 @@ function applyLang(l){
   buildVideoSwitch();
   if(typeof showSlogan==='function')showSlogan();
   if(typeof renderShare==='function')renderShare();
+  if(tour){tour.setLang(l);buildTourChips();markChip(0)}
 }
 $$('.langs button').forEach(b=>b.onclick=()=>{ses.set('lang',b.dataset.lang);applyLang(b.dataset.lang)});
 
@@ -692,7 +733,9 @@ function drawItem(it,by){
   if(g>.35)sparkle(cx+18,by-62,4*g*pulse+1,g*pulse);
 }
 let heroVis=true;new IntersectionObserver(e=>{heroVis=e[0].isIntersecting}).observe(document.getElementById('hero'));
+let MB=.62,CB=.66;
 function drawFactory(){
+  const mob=W<760; MB=mob?.44:.62; CB=mob?.48:.66;
   if(!simOn)return;
   if(!heroVis||document.hidden){requestAnimationFrame(drawFactory);return}
   t+=1;
@@ -701,9 +744,9 @@ function drawFactory(){
   for(let i=0;i<4;i++){const x=W*(.15+i*.25)+Math.sin(t*.004+i)*30;const bg=ctx.createLinearGradient(x,0,x+120,H*.8);bg.addColorStop(0,'rgba(243,226,181,.10)');bg.addColorStop(1,'rgba(243,226,181,0)');ctx.fillStyle=bg;ctx.beginPath();ctx.moveTo(x-20,0);ctx.lineTo(x+40,0);ctx.lineTo(x+220,H*.85);ctx.lineTo(x+60,H*.85);ctx.fill()}
   // machines silhouettes
   ctx.fillStyle='#16140f';
-  for(let i=0;i<6;i++){const mx=(i*W/5)-40, mh=H*(.18+((i*37)%5)/40);ctx.fillRect(mx,H*.62-mh,W/7,mh);ctx.fillStyle='rgba(214,186,128,.25)';ctx.fillRect(mx+10,H*.62-mh+12,W/7-20,2);ctx.fillStyle='#16140f'}
+  for(let i=0;i<6;i++){const mx=(i*W/5)-40, mh=H*(.18+((i*37)%5)/40);ctx.fillRect(mx,H*MB-mh,W/7,mh);ctx.fillStyle='rgba(214,186,128,.25)';ctx.fillRect(mx+10,H*MB-mh+12,W/7-20,2);ctx.fillStyle='#16140f'}
   // conveyor
-  const cy=H*.66;ctx.fillStyle='#24211b';ctx.fillRect(0,cy,W,14);ctx.strokeStyle='rgba(214,186,128,.35)';ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(W,cy);ctx.stroke();
+  const cy=H*CB;ctx.fillStyle='#24211b';ctx.fillRect(0,cy,W,14);ctx.strokeStyle='rgba(214,186,128,.35)';ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(W,cy);ctx.stroke();
   for(let x=-(t*1.2)%26;x<W;x+=26){ctx.fillStyle='#3a342a';ctx.beginPath();ctx.arc(x,cy+7,4,0,7);ctx.fill()}
   // products moving on conveyor (random: carton, offset box, gift box, paper bag, labels, barcode)
   if(!items.length||items[items.length-1].x>-20){items.push(newItem(-130))}
@@ -786,12 +829,54 @@ let shareJob=0;
 async function renderShare(){
   if(!window.drawShareQR||!window.QRCode)return;
   const job=++shareJob, d=I18N[lang], tmp=document.createElement('canvas');
-  await drawShareQR(tmp,{url:CONFIG.shareUrl,name:d.name.toUpperCase(),title:d.title,cta:d.qrCta,logo:'assets/logo-gold.png'});
+  await drawShareQR(tmp,{brand:d.brandFull,brandSub:d.brandSub,url:CONFIG.shareUrl,name:d.name.toUpperCase(),title:d.title,cta:d.qrCta,logo:'assets/logo-gold.png'});
   if(job!==shareJob)return;
   const c=$('#shareQR');c.width=tmp.width;c.height=tmp.height;c.getContext('2d').drawImage(tmp,0,0);
 }
 $('#dlQR').onclick=()=>$('#shareQR').toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='QR-Namecard-NguyenTrungToan.png';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)},'image/png');
 $('#copyLink').onclick=async()=>{try{await navigator.clipboard.writeText(CONFIG.shareUrl);toast(I18N[lang].copied)}catch(e){prompt('URL',CONFIG.shareUrl)}};
+
+/* ---------- virtual factory tour ---------- */
+let tour=null;
+function buildTourChips(){
+  if(!tour)return;
+  $('#tourChips').innerHTML=tour.names().map((n,i)=>`<button data-i="${i}"><b>${String(i+1).padStart(2,'0')}</b>${n}</button>`).join('');
+  $$('#tourChips button').forEach(b=>b.onclick=()=>tour.go(+b.dataset.i));
+}
+function markChip(i){$$('#tourChips button').forEach((b,k)=>b.classList.toggle('on',k===i));const on=$$('#tourChips button')[i];if(on&&on.parentElement){const p=on.parentElement;p.scrollTo({left:on.offsetLeft-p.clientWidth/2+on.clientWidth/2,behavior:'smooth'})}}
+if(window.FactoryTour){
+  tour=FactoryTour($('#tourCanvas'),{lang,onStation:i=>markChip(i)});
+  $('#tourPlay').onclick=()=>{const on=tour.toggle();$('#tourPlay').textContent=on?'❚❚':'▶'};
+  $('#tourFull').onclick=()=>{const el=$('#tour');(document.fullscreenElement?document.exitFullscreen():(el.requestFullscreen||el.webkitRequestFullscreen||(()=>{})).call(el))};
+  document.addEventListener('fullscreenchange',()=>setTimeout(()=>dispatchEvent(new Event('resize')),100));
+  $('#tourRec').onclick=async()=>{
+    const f=`assets/video/factory-tour-${lang}.mp4`;
+    try{const r=await fetch(f,{method:'HEAD'});if(r.ok){const a=document.createElement('a');a.href=f;a.download=`TuanTu-Factory-Tour-${lang}.mp4`;document.body.appendChild(a);a.click();a.remove();return}}catch(e){}
+    recordTour();
+  };
+}
+let recording=false;
+async function recordTour(uploadUrl){
+  if(recording||!tour)return;
+  const cv=$('#tourCanvas'); if(!cv.captureStream||!window.MediaRecorder){toast('Browser does not support recording');return}
+  recording=true; const btn=$('#tourRec'), d=I18N[lang];
+  tour.setSize(1280,720); tour.restart(); tour.play(); markChip(0);
+  const types=['video/mp4;codecs=avc1.42E01E','video/mp4;codecs=avc1','video/mp4','video/webm;codecs=vp9','video/webm'];
+  const type=types.find(t=>MediaRecorder.isTypeSupported(t))||'';
+  const rec=new MediaRecorder(cv.captureStream(30),type?{mimeType:type,videoBitsPerSecond:5e6}:{});
+  const chunks=[]; rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);
+  const total=tour.duration(); let el=0;
+  toast(d.tourKeep);
+  const tick=setInterval(()=>{el++;btn.textContent=`● ${d.tourRecording} ${el}s / ${Math.round(total)}s`},1000);
+  rec.start(1000);
+  await new Promise(r=>setTimeout(r,total*1000));
+  rec.stop(); await new Promise(r=>rec.onstop=r); clearInterval(tick);
+  const blob=new Blob(chunks,{type:type||'video/webm'}), ext=(type||'webm').includes('mp4')?'mp4':'webm';
+  if(uploadUrl){await fetch(uploadUrl+'?ext='+ext,{method:'POST',body:blob});document.body.dataset.uploaded=ext}
+  else{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='TuanTu-Factory-Tour.'+ext;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
+  tour.setSize(null); btn.textContent=d.tourRec; recording=false;
+}
+{const up=new URLSearchParams(location.search).get('recordTo'); if(up&&/^http:\/\/(127\.0\.0\.1|localhost):\d+\//.test(up))setTimeout(()=>recordTour(up),1500);}
 
 let si=0, sTimer;
 function showSlogan(){

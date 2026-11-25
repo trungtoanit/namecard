@@ -35,8 +35,8 @@
     // header: logo + brand
     if(logo)c.drawImage(logo,W/2-205,82,96,96);
     c.textBaseline='alphabetic';c.textAlign='left';c.fillStyle=goldGrad(c,0,90,0,180);
-    c.font='700 46px Montserrat, "Be Vietnam Pro", sans-serif';c.fillText('BAO BÌ TUẤN TÚ',W/2-92,138);
-    c.font='500 20px Montserrat, sans-serif';c.fillStyle='#d9c79f';c.fillText('T U A N   T U   P A C K A G I N G',W/2-90,172);
+    c.font='700 46px Montserrat, "Be Vietnam Pro", "Noto Serif SC", sans-serif';c.fillText(opt.brand||'BAO BÌ TUẤN TÚ',W/2-92,138);
+    c.font='500 20px Montserrat, sans-serif';c.fillStyle='#d9c79f';c.fillText((opt.brandSub||'TUAN TU PACKAGING').split('').join(' '),W/2-90,172);
     // QR panel
     const M=matrix(opt.url), n=M.length, size=600, cell=size/n, qx=(W-size)/2, qy=230;
     c.save();c.shadowColor='rgba(255,205,120,.45)';c.shadowBlur=60;c.fillStyle='#0c0c0e';rr(c,qx-44,qy-44,size+88,size+88,40);c.fill();c.restore();
