@@ -62,6 +62,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .slogan .dots{display:flex;gap:8px;justify-content:center;margin-top:16px}
 .slogan .dots i{width:6px;height:6px;border-radius:50%;background:rgba(214,186,128,.3);transition:.4s}
 .slogan .dots i.on{background:var(--gold2);box-shadow:0 0 10px var(--gold);width:18px;border-radius:3px}
+@media (max-width:760px){.slogan{top:13%;padding:0 14px}.slogan .l{white-space:nowrap;line-height:1.05}.slogan .l2{margin-top:.15em}}
 .scroll-cue{position:absolute;left:50%;bottom:14px;z-index:2;transform:translateX(-50%);width:22px;height:36px;border:1px solid var(--gold3);border-radius:12px}
 .scroll-cue::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--gold);animation:cue 1.8s infinite}
 @keyframes cue{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
@@ -801,10 +802,23 @@ function showSlogan(){
     const [a,b]=list[si%n];
     el.querySelector('.l1').textContent=a; el.querySelector('.l2').textContent=b;
     el.querySelector('.dots').innerHTML=list.map((_,i)=>`<i class="${i===si%n?'on':''}"></i>`).join('');
+    fitSlogan();
     void el.offsetWidth; el.classList.add('show');
   },650);
 }
 setInterval(()=>{si++;showSlogan()},5200);
+// on phones each slogan line is scaled to span the full screen width
+function fitSlogan(){
+  const el=$('#slogan'), avail=el.clientWidth-28;
+  el.querySelectorAll('.l').forEach(l=>{
+    if(innerWidth>=760){l.style.fontSize='';return}
+    const st=l.style; st.fontSize='100px'; st.display='inline-block'; st.letterSpacing='.01em'; st.transition='none';
+    const w=l.getBoundingClientRect().width||1;
+    st.display=''; st.letterSpacing=''; st.transition='';
+    st.fontSize=Math.min(100*avail/w, innerWidth*.22)+'px';
+  });
+}
+addEventListener('resize',fitSlogan);
 applyLang(lang);
 $$('.reveal').forEach(e=>io.observe(e));
 io.observe($('#stats'));
